@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -7,6 +8,8 @@ export default function Home() {
   const [siteReady, setSiteReady] = useState(false);
   const [introDone, setIntroDone] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [flippedArea, setFlippedArea] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,6 +45,98 @@ export default function Home() {
     setMobileMenuOpen(false);
   };
 
+  const workAreas = [
+    {
+      id: "kaygi",
+      title: "Kaygı Bozuklukları",
+      short: "Yoğun kaygı, endişe ve belirsizlikle ilişkili güçlükler.",
+      detail:
+        "Kaygı, gündelik yaşamın doğal bir parçasıdır; ancak yoğunlaştığında kişinin düşüncelerini, ilişkilerini ve günlük işlevselliğini etkileyebilir. Terapi sürecinde kaygının altında yatan örüntüleri anlamaya ve kişi için daha işlevsel yollar geliştirmeye alan açılır.",
+    },
+    {
+      id: "depresyon",
+      title: "Depresyon",
+      short: "Duygudurum, isteksizlik ve yaşam enerjisindeki değişimler.",
+      detail:
+        "Depresif dönemler kişinin enerjisini, ilgisini, ilişkilerini ve kendisiyle kurduğu bağı etkileyebilir. Terapi, bu yaşantının anlamını ve tekrar eden duygusal örüntüleri güvenli bir alanda ele almayı amaçlar.",
+    },
+    {
+      id: "iliskisel-zorluklar",
+      title: "İlişkisel Zorluklar",
+      short: "Yakın ilişkilerde tekrar eden çatışmalar ve bağ kurma güçlükleri.",
+      detail:
+        "İlişkilerde tekrar eden çatışmalar, uzaklaşma ya da yakınlık kurmakta zorlanma kişinin geçmiş ve güncel deneyimleriyle bağlantılı olabilir. Terapi sürecinde ilişkisel örüntüler fark edilerek daha açık ve sağlıklı bağlar kurabilmenin yolları araştırılır.",
+    },
+    {
+      id: "ozsaygi",
+      title: "Özsaygı ve Benlik Algısı",
+      short: "Kendilik değeri, öz eleştiri ve benlik algısıyla ilgili güçlükler.",
+      detail:
+        "Kişinin kendisini nasıl gördüğü, aldığı kararları ve başkalarıyla kurduğu ilişkileri önemli ölçüde etkileyebilir. Terapi, yoğun öz eleştirinin ve yetersizlik duygularının kaynaklarını anlamlandırmaya yardımcı olabilecek bir alan sunar.",
+    },
+    {
+      id: "yalnizlik",
+      title: "Yalnızlık",
+      short: "Bağ kurmakta zorlanma ve duygusal yalnızlık deneyimleri.",
+      detail:
+        "Yalnızlık yalnızca fiziksel olarak tek başına olmak değil, ilişkiler içinde anlaşılmadığını veya bağ kuramadığını hissetmek şeklinde de yaşanabilir. Terapi sürecinde bu deneyimin kişisel anlamı ve ilişkilerdeki yansımaları birlikte incelenebilir.",
+    },
+    {
+      id: "ofke",
+      title: "Öfke Yönetimi",
+      short: "Öfkeyi anlamlandırma, ifade etme ve düzenleme güçlükleri.",
+      detail:
+        "Öfke çoğu zaman sınırlar, incinme, hayal kırıklığı veya karşılanmayan ihtiyaçlarla bağlantılı bir duygudur. Terapi süreci, öfkenin tetikleyicilerini anlamaya ve bu duyguyu daha işlevsel biçimde ifade edebilmenin yollarını keşfetmeye yardımcı olabilir.",
+    },
+    {
+      id: "yas-kayip",
+      title: "Yas ve Kayıp Süreçleri",
+      short: "Kayıp, ayrılık ve değişim sonrasında yaşanan duygusal süreçler.",
+      detail:
+        "Yasın tek bir doğru biçimi veya sabit bir süresi yoktur; her kayıp kişide farklı bir deneyim yaratabilir. Terapi, kayıpla birlikte gelen duygulara yer açmayı ve değişen yaşamla yeniden ilişki kurmayı destekleyen bir alan sunar.",
+    },
+    {
+      id: "goc-uyum",
+      title: "Göç ve Uyum Süreçleri",
+      short: "Yeni bir ülke, kültür veya yaşam düzenine uyum süreçleri.",
+      detail:
+        "Göç; aidiyet, kimlik, ilişkiler ve gündelik yaşam üzerinde birden fazla değişimi aynı anda beraberinde getirebilir. Terapi sürecinde bu değişimlerin yarattığı duygusal yük ve yeni yaşam düzenine uyum deneyimi ele alınabilir.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "Seanslar ne kadar sürüyor?",
+      answer:
+        "Bireysel psikoterapi görüşmeleri genellikle yaklaşık 50 dakika sürer. Görüşme sıklığı ve sürecin çerçevesi ilk seanslarda danışanın ihtiyaçları doğrultusunda birlikte değerlendirilir.",
+    },
+    {
+      question: "İlk görüşmede neler konuşulur?",
+      answer:
+        "İlk görüşme, terapiye başvurma nedeninizi, beklentilerinizi ve mevcut ihtiyaçlarınızı konuşmak için bir tanışma alanıdır. Aynı zamanda çalışma biçimi ve terapi sürecine ilişkin sorularınızı paylaşabilirsiniz.",
+    },
+    {
+      question: "Görüşmeler çevrimiçi yapılabilir mi?",
+      answer:
+        "Evet. Görüşmeler uygun koşullar sağlandığında çevrimiçi veya yüz yüze gerçekleştirilebilir. Hangi görüşme biçiminin sizin için daha uygun olduğu başlangıçta birlikte değerlendirilebilir.",
+    },
+    {
+      question: "Terapi süreci ne kadar devam eder?",
+      answer:
+        "Terapi süresini herkes için geçerli tek bir zaman aralığıyla tanımlamak mümkün değildir. Süre; başvuru nedeni, ihtiyaçlar, hedefler ve süreç içinde ortaya çıkan konulara göre değişebilir.",
+    },
+    {
+      question: "Görüşmeler gizli midir?",
+      answer:
+        "Psikoterapi görüşmelerinde gizlilik temel ilkelerden biridir. Gizliliğin kapsamı ve profesyonel sınırlar terapi sürecinin başlangıcında danışanla açık biçimde paylaşılır.",
+    },
+    {
+      question: "Seans iptali veya değişikliği nasıl yapılır?",
+      answer:
+        "Randevu değişikliği veya iptal ihtiyacında mümkün olduğunca önceden iletişime geçilmesi beklenir. Kesin iptal ve değişiklik koşulları seans süreci başlamadan önce danışanla paylaşılır.",
+    },
+  ];
+
   return (
     <main className={siteReady ? "site-ready" : "site-loading"}>
       {/* INTRO */}
@@ -73,7 +168,7 @@ export default function Home() {
         <nav className="nav-links" aria-label="Ana menü">
           <a href="#hakkimda">Hakkımda</a>
           <a href="#alanlar">Çalışma Alanlarım</a>
-          <a href="#blog">Blog</a>
+          <a href="/blog">Blog</a>
           <a href="#sss">SSS</a>
           <a href="#iletisim">İletişim</a>
         </nav>
@@ -168,7 +263,7 @@ export default function Home() {
             <a href="#alanlar" onClick={closeMobileMenu}>
               Çalışma Alanlarım
             </a>
-            <a href="#blog" onClick={closeMobileMenu}>
+            <a href="/blog" onClick={closeMobileMenu}>
               Blog
             </a>
             <a href="#sss" onClick={closeMobileMenu}>
@@ -295,8 +390,15 @@ export default function Home() {
         <div className="hero-visual reveal visual-reveal">
           <div className="portrait-frame">
             <div className="portrait-tilt">
-              <div className="portrait-placeholder">
-                <span>Hande’nin fotoğrafı</span>
+              <div className="portrait-image-wrap">
+                <Image
+                  src="/images/hande-oner-portrait.webp"
+                  alt="Uzman Psikolog Hande Öner"
+                  fill
+                  priority
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
+                  className="portrait-image"
+                />
               </div>
             </div>
           </div>
@@ -382,64 +484,208 @@ export default function Home() {
             </h2>
 
             <p className="areas-description">
-              Çalışma alanlarıyla ilgili detaylı bilgi için ilgili başlığı
-              seçebilirsiniz.
+              Bir kartı seçerek ilgili çalışma alanı hakkında kısa bilgi
+              görüntüleyebilirsiniz.
             </p>
           </div>
         </div>
 
         <div className="areas-grid">
-          <a
-            className="area-card"
-            href="/calisma-alanlari/anksiyete"
-            aria-label="Anksiyete hakkında detaylı bilgi"
-          >
-            <span className="area-number">01</span>
-            <div>
-              <h3>Anksiyete</h3>
-              <p>Kaygı, yoğun endişe ve belirsizlikle ilişkili güçlükler.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+          {workAreas.map((area, index) => {
+            const isFlipped = flippedArea === area.id;
 
-          <a
-            className="area-card"
-            href="/calisma-alanlari/depresyon"
-            aria-label="Depresyon hakkında detaylı bilgi"
-          >
-            <span className="area-number">02</span>
-            <div>
-              <h3>Depresyon</h3>
-              <p>Duygudurum, isteksizlik ve yaşam enerjisindeki değişimler.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+            return (
+              <button
+                key={area.id}
+                type="button"
+                className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
+                onClick={() => setFlippedArea(isFlipped ? null : area.id)}
+                aria-pressed={isFlipped}
+                aria-label={`${area.title} kartını ${isFlipped ? "ön yüze" : "arka yüze"} çevir`}
+              >
+                <span className="area-card-inner">
+                  <span className="area-card-face area-card-front">
+                    <span className="area-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-          <a
-            className="area-card"
-            href="/calisma-alanlari/ofke-problemleri"
-            aria-label="Öfke problemleri hakkında detaylı bilgi"
-          >
-            <span className="area-number">03</span>
-            <div>
-              <h3>Öfke Problemleri</h3>
-              <p>Öfkeyi anlamlandırma, ifade etme ve düzenleme güçlükleri.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+                    <span className="area-card-copy">
+                      <strong>{area.title}</strong>
+                      <span>{area.short}</span>
+                    </span>
 
-          <a
-            className="area-card"
-            href="/calisma-alanlari/goc-ve-uyum"
-            aria-label="Göç ve uyum süreçleri hakkında detaylı bilgi"
-          >
-            <span className="area-number">04</span>
-            <div>
-              <h3>Göç ve Uyum Süreçleri</h3>
-              <p>Yeni bir ülke, kültür veya yaşam düzenine uyum süreçleri.</p>
+                    <span className="area-flip-hint" aria-hidden="true">
+                      ↻
+                    </span>
+                  </span>
+
+                  <span className="area-card-face area-card-back">
+                    <span className="area-back-label">KISA BİLGİ</span>
+                    <span className="area-back-text">{area.detail}</span>
+                    <span className="area-back-return" aria-hidden="true">
+                      Tekrar çevir ↻
+                    </span>
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* EDUCATION, TRAINING & VOLUNTEERING */}
+      <section className="credentials section-shell" id="egitimler">
+        <div className="credentials-header">
+          <span className="section-index">03</span>
+
+          <div className="credentials-heading">
+            <p className="section-label">EĞİTİMLER &amp; DİĞER ÇALIŞMALAR</p>
+
+            <h2>
+              Mesleki gelişim
+              <br />
+              <span>ve gönüllülük deneyimleri.</span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="credentials-compact-grid">
+          <div className="credential-column">
+            <div className="credential-column-heading">
+              <span className="credential-accent" aria-hidden="true" />
+              <h3>Eğitimler &amp; Sertifikalar</h3>
             </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+
+            <article className="credential-mini-card credential-membership">
+              <span className="credential-type">ÜYELİK</span>
+              <strong>British Psychological Society</strong>
+              <p>GMBPsS Graduate Member</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">YÜKSEK LİSANS</span>
+              <strong>Bournemouth University</strong>
+              <p>Klinik Psikoloji Yüksek Lisansı (MSc Clinical Psychology)</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">LİSANS</span>
+              <strong>İstanbul Bilgi Üniversitesi</strong>
+              <p>Psikoloji Lisans Programı</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">EĞİTİM</span>
+              <strong>İstanbul Psikoterapi Okulu</strong>
+              <p>Psikanalitik Psikoterapi Eğitimi – Kuramsal Modül</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">EĞİTİM</span>
+              <strong>Dr. Alp Karaosmanoğlu / International Society of Schema Therapy</strong>
+              <p>Şema Terapi Eğitimi</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">EĞİTİM</span>
+              <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
+              <p>Bilişsel ve Davranışçı Terapiler Eğitimi</p>
+            </article>
+          </div>
+
+          <div className="credential-column">
+            <div className="credential-column-heading">
+              <span className="credential-accent" aria-hidden="true" />
+              <h3>Gönüllülük &amp; Aktiviteler</h3>
+            </div>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">GÖNÜLLÜLÜK</span>
+              <strong>Samaritans</strong>
+              <p>Duygusal kriz yaşayan bireylere telefonla gönüllü dinleme desteği.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">GÖNÜLLÜLÜK</span>
+              <strong>World Human Relief</strong>
+              <p>Orman yangınlarından etkilenen bireylere psikososyal destek.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">AKTİVİTE</span>
+              <strong>İstanbul Üniversitesi Psikoloji Kulübü</strong>
+              <p>Deprem mağdurları ve travma alanında saha psikologluğu semineri.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">GÖNÜLLÜLÜK</span>
+              <strong>BİLUM – BİLGİ Nar Harekatı</strong>
+              <p>Çocuk esirgeme kurumlarında sosyal sorumluluk projeleri.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">AKTİVİTE</span>
+              <strong>Türkiye Psikoloji Öğrencileri Çalışma Grubu</strong>
+              <p>Psikoloji öğrencileri çalışma grubu katılımı.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq section-shell" id="sss">
+        <div className="faq-header">
+          <span className="section-index">04</span>
+
+          <div className="faq-heading">
+            <p className="section-label">SIK SORULAN SORULAR</p>
+
+            <h2>
+              Terapi sürecine dair
+              <br />
+              <span>merak edilenler.</span>
+            </h2>
+
+            <p className="faq-intro">
+              Bu bölümdeki içerikler şimdilik tasarım ve yerleşimi görmek
+              amacıyla hazırlanmıştır; son metinler yayından önce
+              netleştirilebilir.
+            </p>
+          </div>
+        </div>
+
+        <div className="faq-list">
+          {faqItems.map((item, index) => {
+            const isOpen = openFaq === index;
+
+            return (
+              <article
+                className={`faq-item ${isOpen ? "is-open" : ""}`}
+                key={item.question}
+              >
+                <button
+                  type="button"
+                  className="faq-question"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="faq-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item.question}</span>
+                  <span className="faq-icon" aria-hidden="true">
+                    +
+                  </span>
+                </button>
+
+                <div className="faq-answer-wrap">
+                  <div className="faq-answer">
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 

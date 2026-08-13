@@ -1,11 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function EnglishHome() {
+export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [siteReady, setSiteReady] = useState(false);
   const [introDone, setIntroDone] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [flippedArea, setFlippedArea] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +32,110 @@ export default function EnglishHome() {
       window.clearTimeout(introTimer);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  const workAreas = [
+    {
+      id: "anxiety",
+      title: "Anxiety Disorders",
+      short: "Difficulties related to intense anxiety, worry and uncertainty.",
+      detail:
+        "Anxiety is a natural part of everyday life; however, when it becomes intense, it can affect a person's thoughts, relationships and daily functioning. Therapy can provide space to understand the patterns underlying anxiety and explore more helpful ways of responding.",
+    },
+    {
+      id: "depression",
+      title: "Depression",
+      short: "Changes in mood, motivation and engagement with daily life.",
+      detail:
+        "Depressive periods can affect a person's energy, interests, relationships and sense of self. Therapy offers a safe space to explore the meaning of these experiences and recurring emotional patterns.",
+    },
+    {
+      id: "relationship-difficulties",
+      title: "Relationship Difficulties",
+      short: "Recurring conflict and difficulties forming or maintaining close connections.",
+      detail:
+        "Recurring conflict, emotional distance or difficulty with closeness may be connected to both past and present experiences. Therapy can help identify relational patterns and explore ways of building more open and healthier connections.",
+    },
+    {
+      id: "self-esteem",
+      title: "Self-Esteem & Self-Perception",
+      short: "Difficulties related to self-worth, self-criticism and self-perception.",
+      detail:
+        "The way a person sees themselves can strongly influence their decisions and relationships. Therapy can offer space to understand the roots of intense self-criticism, inadequacy and difficulties with self-worth.",
+    },
+    {
+      id: "loneliness",
+      title: "Loneliness",
+      short: "Difficulty feeling connected and experiences of emotional loneliness.",
+      detail:
+        "Loneliness is not limited to being physically alone; it can also involve feeling unseen, misunderstood or disconnected within relationships. Therapy can explore the personal meaning of this experience and how it appears in a person's relationships.",
+    },
+    {
+      id: "anger",
+      title: "Anger Management",
+      short: "Difficulties understanding, expressing and regulating anger.",
+      detail:
+        "Anger is often connected to boundaries, hurt, frustration or unmet needs. Therapy can help identify triggers and explore more constructive ways of understanding and expressing anger.",
+    },
+    {
+      id: "grief-loss",
+      title: "Grief & Loss",
+      short: "Emotional processes following loss, separation and significant change.",
+      detail:
+        "There is no single correct way or fixed timeline for grief; every loss can be experienced differently. Therapy offers space for the emotions that accompany loss and can support the process of reconnecting with a changed life.",
+    },
+    {
+      id: "migration-adjustment",
+      title: "Migration & Adjustment",
+      short: "Adjusting to a new country, culture or way of life.",
+      detail:
+        "Migration can bring simultaneous changes in belonging, identity, relationships and everyday life. Therapy can provide space to explore the emotional impact of these changes and the experience of adapting to a new environment.",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How long does a session last?",
+      answer:
+        "Individual psychotherapy sessions generally last around 50 minutes. Session frequency and the overall therapeutic framework can be discussed together during the initial meetings according to the client's needs.",
+    },
+    {
+      question: "What happens in the first session?",
+      answer:
+        "The first session provides space to talk about what brings you to therapy, your expectations and your current needs. It is also an opportunity to ask questions about the therapeutic process and way of working.",
+    },
+    {
+      question: "Are online sessions available?",
+      answer:
+        "Yes. Sessions can be held online or face-to-face when appropriate. The format that feels most suitable can be discussed together at the beginning of the process.",
+    },
+    {
+      question: "How long does therapy continue?",
+      answer:
+        "There is no single timeframe that applies to everyone. The duration of therapy may vary depending on the reason for seeking support, individual needs, goals and the themes that emerge during the process.",
+    },
+    {
+      question: "Are sessions confidential?",
+      answer:
+        "Confidentiality is one of the fundamental principles of psychotherapy. The scope of confidentiality and professional boundaries are discussed clearly with the client at the beginning of the therapeutic process.",
+    },
+    {
+      question: "How are cancellations or changes handled?",
+      answer:
+        "If a session needs to be changed or cancelled, clients are generally asked to provide as much notice as possible. Specific cancellation and rescheduling terms are shared before the therapy process begins.",
+    },
+  ];
 
   return (
     <main className={siteReady ? "site-ready" : "site-loading"}>
@@ -52,7 +160,7 @@ export default function EnglishHome() {
 
       {/* NAVIGATION */}
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-        <a className="brand" href="/en" aria-label="Hande Öner homepage">
+        <a className="brand" href="#" aria-label="Hande Öner home">
           <span className="brand-name">Hande Öner</span>
           <span className="brand-title">Psychologist</span>
         </a>
@@ -60,7 +168,7 @@ export default function EnglishHome() {
         <nav className="nav-links" aria-label="Main menu">
           <a href="#about">About</a>
           <a href="#areas">Areas of Work</a>
-          <a href="#blog">Blog</a>
+          <a href="/en/blog">Blog</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -76,7 +184,7 @@ export default function EnglishHome() {
               className="language-option"
               href="/"
               lang="tr"
-              aria-label="Türkçe"
+              aria-label="Turkish"
             >
               <svg
                 className="language-flag-svg"
@@ -121,8 +229,116 @@ export default function EnglishHome() {
               <span>EN</span>
             </a>
           </div>
+
+          <button
+            className={`mobile-menu-toggle ${mobileMenuOpen ? "is-open" : ""}`}
+            type="button"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
       </header>
+
+      {/* MOBILE MENU */}
+      <div
+        className={`mobile-menu-overlay ${mobileMenuOpen ? "is-open" : ""}`}
+        aria-hidden={!mobileMenuOpen}
+        onClick={closeMobileMenu}
+      >
+        <nav
+          id="mobile-menu"
+          className="mobile-menu-panel"
+          aria-label="Mobile menu"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div className="mobile-menu-links">
+            <a href="#about" onClick={closeMobileMenu}>
+              About
+            </a>
+            <a href="#areas" onClick={closeMobileMenu}>
+              Areas of Work
+            </a>
+            <a href="/en/blog" onClick={closeMobileMenu}>
+              Blog
+            </a>
+            <a href="#faq" onClick={closeMobileMenu}>
+              FAQ
+            </a>
+            <a href="#contact" onClick={closeMobileMenu}>
+              Contact
+            </a>
+          </div>
+
+          <div className="mobile-menu-footer">
+            <a
+              className="mobile-menu-cta"
+              href="#contact"
+              onClick={closeMobileMenu}
+            >
+              Request a Session
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <div className="mobile-language-switcher" aria-label="Language selection">
+              <a
+                className="language-option"
+                href="/"
+                lang="tr"
+                aria-label="Turkish"
+                onClick={closeMobileMenu}
+              >
+                <svg
+                  className="language-flag-svg"
+                  viewBox="0 0 60 40"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect width="60" height="40" rx="2" fill="#E30A17" />
+                  <circle cx="24" cy="20" r="10" fill="#FFFFFF" />
+                  <circle cx="28" cy="20" r="8" fill="#E30A17" />
+                  <polygon
+                    points="37,15.6 38.4,18.3 41.4,18.7 39.2,20.8 39.8,23.8 37,22.4 34.2,23.8 34.8,20.8 32.6,18.7 35.6,18.3"
+                    fill="#FFFFFF"
+                  />
+                </svg>
+                <span>TR</span>
+              </a>
+
+              <span className="language-divider" aria-hidden="true">
+                |
+              </span>
+
+              <a
+                className="language-option language-option-active"
+                href="/en"
+                lang="en"
+                aria-current="page"
+                aria-label="English"
+                onClick={closeMobileMenu}
+              >
+                <svg
+                  className="language-flag-svg"
+                  viewBox="0 0 60 40"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect width="60" height="40" rx="2" fill="#012169" />
+                  <path d="M0 0L60 40M60 0L0 40" stroke="#FFFFFF" strokeWidth="8" />
+                  <path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" strokeWidth="4" />
+                  <path d="M30 0V40M0 20H60" stroke="#FFFFFF" strokeWidth="12" />
+                  <path d="M30 0V40M0 20H60" stroke="#C8102E" strokeWidth="7" />
+                </svg>
+                <span>EN</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
 
       {/* HERO */}
       <section className="hero section-shell">
@@ -142,7 +358,7 @@ export default function EnglishHome() {
           <p className="hero-description reveal reveal-4">
             Face-to-face and online psychotherapy.
             <br />
-            Sessions available in Turkish and English.
+            Turkish and English sessions available.
           </p>
 
           <div className="hero-actions reveal reveal-5">
@@ -160,12 +376,12 @@ export default function EnglishHome() {
           <div className="hero-meta reveal reveal-6">
             <div>
               <span className="meta-label">Session</span>
-              <span className="meta-value">Face-to-Face &amp; Online</span>
+              <span className="meta-value">Face-to-Face & Online</span>
             </div>
 
             <div>
               <span className="meta-label">Language</span>
-              <span className="meta-value">Turkish &amp; English</span>
+              <span className="meta-value">Turkish & English</span>
             </div>
           </div>
         </div>
@@ -174,8 +390,15 @@ export default function EnglishHome() {
         <div className="hero-visual reveal visual-reveal">
           <div className="portrait-frame">
             <div className="portrait-tilt">
-              <div className="portrait-placeholder">
-                <span>Hande’s photo</span>
+              <div className="portrait-image-wrap">
+                <Image
+                  src="/images/hande-oner-portrait.webp"
+                  alt="Psychologist Hande Öner"
+                  fill
+                  priority
+                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
+                  className="portrait-image"
+                />
               </div>
             </div>
           </div>
@@ -211,10 +434,11 @@ export default function EnglishHome() {
           <article className="about-paragraph-card">
             <p>
               Hande Öner completed her undergraduate degree in Psychology at
-              Istanbul Bilgi University. She later completed a master’s degree
-              in Clinical Psychology at Bournemouth University in the United
-              Kingdom. Her master’s thesis explored the impact of childhood
-              sexual abuse on interpersonal relationships in adulthood.
+              Istanbul Bilgi University. She later completed a master&apos;s
+              degree in Clinical Psychology at Bournemouth University in the
+              United Kingdom. Her master&apos;s thesis explored the impact of
+              childhood sexual abuse on interpersonal relationships in
+              adulthood.
             </p>
           </article>
 
@@ -259,64 +483,205 @@ export default function EnglishHome() {
             </h2>
 
             <p className="areas-description">
-              Select a topic to learn more about the areas that may be
-              addressed in therapy.
+              Select a card to view a short introduction to each area of work.
             </p>
           </div>
         </div>
 
         <div className="areas-grid">
-          <a
-            className="area-card"
-            href="/en/areas-of-work/anxiety"
-            aria-label="Learn more about anxiety"
-          >
-            <span className="area-number">01</span>
-            <div>
-              <h3>Anxiety</h3>
-              <p>Difficulties related to worry, uncertainty and anxiety.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+          {workAreas.map((area, index) => {
+            const isFlipped = flippedArea === area.id;
 
-          <a
-            className="area-card"
-            href="/en/areas-of-work/depression"
-            aria-label="Learn more about depression"
-          >
-            <span className="area-number">02</span>
-            <div>
-              <h3>Depression</h3>
-              <p>Changes in mood, motivation and engagement with daily life.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+            return (
+              <button
+                key={area.id}
+                type="button"
+                className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
+                onClick={() => setFlippedArea(isFlipped ? null : area.id)}
+                aria-pressed={isFlipped}
+                aria-label={`Turn ${area.title} card ${isFlipped ? "to the front" : "to the back"}`}
+              >
+                <span className="area-card-inner">
+                  <span className="area-card-face area-card-front">
+                    <span className="area-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-          <a
-            className="area-card"
-            href="/en/areas-of-work/anger"
-            aria-label="Learn more about anger difficulties"
-          >
-            <span className="area-number">03</span>
-            <div>
-              <h3>Anger Difficulties</h3>
-              <p>Difficulties understanding, expressing and regulating anger.</p>
-            </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+                    <span className="area-card-copy">
+                      <strong>{area.title}</strong>
+                      <span>{area.short}</span>
+                    </span>
 
-          <a
-            className="area-card"
-            href="/en/areas-of-work/migration-adjustment"
-            aria-label="Learn more about migration and adjustment"
-          >
-            <span className="area-number">04</span>
-            <div>
-              <h3>Migration &amp; Adjustment</h3>
-              <p>Adjusting to a new country, culture or way of life.</p>
+                    <span className="area-flip-hint" aria-hidden="true">
+                      ↻
+                    </span>
+                  </span>
+
+                  <span className="area-card-face area-card-back">
+                    <span className="area-back-label">BRIEF OVERVIEW</span>
+                    <span className="area-back-text">{area.detail}</span>
+                    <span className="area-back-return" aria-hidden="true">
+                      Turn back ↻
+                    </span>
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* EDUCATION, TRAINING & VOLUNTEERING */}
+      <section className="credentials section-shell" id="training">
+        <div className="credentials-header">
+          <span className="section-index">03</span>
+
+          <div className="credentials-heading">
+            <p className="section-label">TRAINING &amp; OTHER WORK</p>
+
+            <h2>
+              Professional development
+              <br />
+              <span>and volunteering experience.</span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="credentials-compact-grid">
+          <div className="credential-column">
+            <div className="credential-column-heading">
+              <span className="credential-accent" aria-hidden="true" />
+              <h3>Education &amp; Training</h3>
             </div>
-            <span className="area-arrow" aria-hidden="true">↗</span>
-          </a>
+
+            <article className="credential-mini-card credential-membership">
+              <span className="credential-type">MEMBERSHIP</span>
+              <strong>British Psychological Society</strong>
+              <p>GMBPsS Graduate Member</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">MASTER'S DEGREE</span>
+              <strong>Bournemouth University</strong>
+              <p>MSc Clinical Psychology</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">BACHELOR'S DEGREE</span>
+              <strong>Istanbul Bilgi University</strong>
+              <p>BSc Psychology</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">TRAINING</span>
+              <strong>Istanbul Psychotherapy School</strong>
+              <p>Psychoanalytic Psychotherapy Training – Theoretical Module</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">TRAINING</span>
+              <strong>Dr. Alp Karaosmanoğlu / International Society of Schema Therapy</strong>
+              <p>Schema Therapy Training</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">TRAINING</span>
+              <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
+              <p>Cognitive and Behavioural Therapies Training</p>
+            </article>
+          </div>
+
+          <div className="credential-column">
+            <div className="credential-column-heading">
+              <span className="credential-accent" aria-hidden="true" />
+              <h3>Volunteering &amp; Activities</h3>
+            </div>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">VOLUNTEERING</span>
+              <strong>Samaritans</strong>
+              <p>Volunteer listening support by telephone for people experiencing emotional crisis.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">VOLUNTEERING</span>
+              <strong>World Human Relief</strong>
+              <p>Psychosocial support for people affected by wildfires.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">ACTIVITY</span>
+              <strong>Istanbul University Psychology Club</strong>
+              <p>Seminar on field psychology with earthquake survivors and trauma.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">VOLUNTEERING</span>
+              <strong>BILUM – BILGI Nar Initiative</strong>
+              <p>Social responsibility projects in child protection institutions.</p>
+            </article>
+
+            <article className="credential-mini-card">
+              <span className="credential-type">ACTIVITY</span>
+              <strong>Turkish Psychology Students Working Group</strong>
+              <p>Participation in a psychology students working group.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq section-shell" id="faq">
+        <div className="faq-header">
+          <span className="section-index">04</span>
+
+          <div className="faq-heading">
+            <p className="section-label">FREQUENTLY ASKED QUESTIONS</p>
+
+            <h2>
+              Questions about
+              <br />
+              <span>the therapy process.</span>
+            </h2>
+
+            <p className="faq-intro">
+              The content in this section is temporary and intended to preview the layout. Final wording can be refined before launch.
+            </p>
+          </div>
+        </div>
+
+        <div className="faq-list">
+          {faqItems.map((item, index) => {
+            const isOpen = openFaq === index;
+
+            return (
+              <article
+                className={`faq-item ${isOpen ? "is-open" : ""}`}
+                key={item.question}
+              >
+                <button
+                  type="button"
+                  className="faq-question"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="faq-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item.question}</span>
+                  <span className="faq-icon" aria-hidden="true">
+                    +
+                  </span>
+                </button>
+
+                <div className="faq-answer-wrap">
+                  <div className="faq-answer">
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
