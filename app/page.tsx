@@ -6,6 +6,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [siteReady, setSiteReady] = useState(false);
   const [introDone, setIntroDone] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +29,18 @@ export default function Home() {
       window.clearTimeout(introTimer);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <main className={siteReady ? "site-ready" : "site-loading"}>
@@ -121,8 +134,116 @@ export default function Home() {
               <span>EN</span>
             </a>
           </div>
+
+          <button
+            className={`mobile-menu-toggle ${mobileMenuOpen ? "is-open" : ""}`}
+            type="button"
+            aria-label={mobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
         </div>
       </header>
+
+      {/* MOBILE MENU */}
+      <div
+        className={`mobile-menu-overlay ${mobileMenuOpen ? "is-open" : ""}`}
+        aria-hidden={!mobileMenuOpen}
+        onClick={closeMobileMenu}
+      >
+        <nav
+          id="mobile-menu"
+          className="mobile-menu-panel"
+          aria-label="Mobil menü"
+          onClick={(event) => event.stopPropagation()}
+        >
+          <div className="mobile-menu-links">
+            <a href="#hakkimda" onClick={closeMobileMenu}>
+              Hakkımda
+            </a>
+            <a href="#alanlar" onClick={closeMobileMenu}>
+              Çalışma Alanlarım
+            </a>
+            <a href="#blog" onClick={closeMobileMenu}>
+              Blog
+            </a>
+            <a href="#sss" onClick={closeMobileMenu}>
+              SSS
+            </a>
+            <a href="#iletisim" onClick={closeMobileMenu}>
+              İletişim
+            </a>
+          </div>
+
+          <div className="mobile-menu-footer">
+            <a
+              className="mobile-menu-cta"
+              href="#iletisim"
+              onClick={closeMobileMenu}
+            >
+              Seans Talebi
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <div className="mobile-language-switcher" aria-label="Dil seçimi">
+              <a
+                className="language-option language-option-active"
+                href="/"
+                lang="tr"
+                aria-current="page"
+                aria-label="Türkçe"
+                onClick={closeMobileMenu}
+              >
+                <svg
+                  className="language-flag-svg"
+                  viewBox="0 0 60 40"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect width="60" height="40" rx="2" fill="#E30A17" />
+                  <circle cx="24" cy="20" r="10" fill="#FFFFFF" />
+                  <circle cx="28" cy="20" r="8" fill="#E30A17" />
+                  <polygon
+                    points="37,15.6 38.4,18.3 41.4,18.7 39.2,20.8 39.8,23.8 37,22.4 34.2,23.8 34.8,20.8 32.6,18.7 35.6,18.3"
+                    fill="#FFFFFF"
+                  />
+                </svg>
+                <span>TR</span>
+              </a>
+
+              <span className="language-divider" aria-hidden="true">
+                |
+              </span>
+
+              <a
+                className="language-option"
+                href="/en"
+                lang="en"
+                aria-label="English"
+                onClick={closeMobileMenu}
+              >
+                <svg
+                  className="language-flag-svg"
+                  viewBox="0 0 60 40"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <rect width="60" height="40" rx="2" fill="#012169" />
+                  <path d="M0 0L60 40M60 0L0 40" stroke="#FFFFFF" strokeWidth="8" />
+                  <path d="M0 0L60 40M60 0L0 40" stroke="#C8102E" strokeWidth="4" />
+                  <path d="M30 0V40M0 20H60" stroke="#FFFFFF" strokeWidth="12" />
+                  <path d="M30 0V40M0 20H60" stroke="#C8102E" strokeWidth="7" />
+                </svg>
+                <span>EN</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
 
       {/* HERO */}
       <section className="hero section-shell">
