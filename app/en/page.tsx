@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function EnglishHome() {
   const [scrolled, setScrolled] = useState(false);
   const [siteReady, setSiteReady] = useState(false);
   const [introDone, setIntroDone] = useState(false);
@@ -37,7 +37,7 @@ export default function Home() {
           <div className="intro-curtain">
             <div className="intro-content">
               <p className="intro-name">Hande Öner</p>
-              <p className="intro-title">Uzman Psikolog</p>
+              <p className="intro-title">Psychologist</p>
             </div>
 
             <div className="glass-sweep">
@@ -52,31 +52,30 @@ export default function Home() {
 
       {/* NAVIGATION */}
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
-        <a className="brand" href="#" aria-label="Hande Öner ana sayfa">
+        <a className="brand" href="/en" aria-label="Hande Öner homepage">
           <span className="brand-name">Hande Öner</span>
-          <span className="brand-title">Uzman Psikolog</span>
+          <span className="brand-title">Psychologist</span>
         </a>
 
-        <nav className="nav-links" aria-label="Ana menü">
-          <a href="#hakkimda">Hakkımda</a>
-          <a href="#alanlar">Çalışma Alanlarım</a>
+        <nav className="nav-links" aria-label="Main menu">
+          <a href="#about">About</a>
+          <a href="#areas">Areas of Work</a>
           <a href="#blog">Blog</a>
-          <a href="#sss">SSS</a>
-          <a href="#iletisim">İletişim</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
         </nav>
 
         <div className="navbar-actions">
-          <a className="nav-cta" href="#iletisim">
-            Seans Talebi
+          <a className="nav-cta" href="#contact">
+            Request a Session
             <span aria-hidden="true">↗</span>
           </a>
 
-          <div className="language-switcher" aria-label="Dil seçimi">
+          <div className="language-switcher" aria-label="Language selection">
             <a
-              className="language-option language-option-active"
+              className="language-option"
               href="/"
               lang="tr"
-              aria-current="page"
               aria-label="Türkçe"
             >
               <svg
@@ -101,9 +100,10 @@ export default function Home() {
             </span>
 
             <a
-              className="language-option"
+              className="language-option language-option-active"
               href="/en"
               lang="en"
+              aria-current="page"
               aria-label="English"
             >
               <svg
@@ -129,43 +129,43 @@ export default function Home() {
         <div className="hero-copy">
           <div className="hero-label reveal reveal-1">
             <span />
-            UZMAN PSİKOLOG
+            PSYCHOLOGIST
             <span />
           </div>
 
           <h1 className="reveal reveal-2">Hande Öner</h1>
 
           <p className="hero-name reveal reveal-3">
-            Yetişkinlere Yönelik Psikoterapi
+            Psychotherapy for Adults
           </p>
 
           <p className="hero-description reveal reveal-4">
-            Yüz yüze ve çevrimiçi psikoterapi.
+            Face-to-face and online psychotherapy.
             <br />
-            Türkçe ve İngilizce görüşme seçeneği.
+            Sessions available in Turkish and English.
           </p>
 
           <div className="hero-actions reveal reveal-5">
-            <a href="#iletisim" className="primary-button">
-              Seans Talebi Oluştur
+            <a href="#contact" className="primary-button">
+              Request a Session
               <span aria-hidden="true">↗</span>
             </a>
 
-            <a href="#hakkimda" className="text-link">
-              Hakkımda
+            <a href="#about" className="text-link">
+              About
               <span aria-hidden="true">↓</span>
             </a>
           </div>
 
           <div className="hero-meta reveal reveal-6">
             <div>
-              <span className="meta-label">Görüşme</span>
-              <span className="meta-value">Yüz Yüze ve Çevrimiçi</span>
+              <span className="meta-label">Session</span>
+              <span className="meta-value">Face-to-Face &amp; Online</span>
             </div>
 
             <div>
-              <span className="meta-label">Dil</span>
-              <span className="meta-value">Türkçe ve İngilizce</span>
+              <span className="meta-label">Language</span>
+              <span className="meta-value">Turkish &amp; English</span>
             </div>
           </div>
         </div>
@@ -175,7 +175,7 @@ export default function Home() {
           <div className="portrait-frame">
             <div className="portrait-tilt">
               <div className="portrait-placeholder">
-                <span>Hande’nin fotoğrafı</span>
+                <span>Hande’s photo</span>
               </div>
             </div>
           </div>
@@ -192,17 +192,17 @@ export default function Home() {
       </div>
 
       {/* ABOUT */}
-      <section className="about section-shell" id="hakkimda">
+      <section className="about section-shell" id="about">
         <div className="about-header">
           <span className="section-index">01</span>
 
           <div className="about-heading">
-            <p className="section-label">HAKKIMDA</p>
+            <p className="section-label">ABOUT</p>
 
             <h2>
-              Eğitim, deneyim
+              Education, experience
               <br />
-              <span>ve çalışma yaklaşımı.</span>
+              <span>and therapeutic approach.</span>
             </h2>
           </div>
         </div>
@@ -210,36 +210,34 @@ export default function Home() {
         <div className="about-paragraphs">
           <article className="about-paragraph-card">
             <p>
-              Hande Öner, lisans eğitimini İstanbul Bilgi Üniversitesi
-              Psikoloji Bölümü’nde tamamlamıştır. Ardından İngiltere’de
-              Bournemouth University’de Klinik Psikoloji yüksek lisansını
-              tamamlayarak uzmanlık eğitimini almıştır. Yüksek lisans tezinde
-              çocukluk çağı cinsel istismarının yetişkinlik dönemindeki
-              kişilerarası ilişkiler üzerindeki etkilerini incelemiştir.
+              Hande Öner completed her undergraduate degree in Psychology at
+              Istanbul Bilgi University. She later completed a master’s degree
+              in Clinical Psychology at Bournemouth University in the United
+              Kingdom. Her master’s thesis explored the impact of childhood
+              sexual abuse on interpersonal relationships in adulthood.
             </p>
           </article>
 
           <article className="about-paragraph-card">
             <p>
-              Türkiye ve İngiltere’de farklı ruh sağlığı kurumlarında
-              psikolojik değerlendirme, danışan görüşmeleri ve psikoeğitim
-              süreçlerinde görev almıştır. İngiltere’de ruh sağlığı destek
-              çalışanı, ardından We Are With You bünyesinde iyileşme destek
-              çalışanı olarak çalışmış; yetişkinlerle vaka yönetimi,
-              motivasyonel görüşme, risk değerlendirmesi ve iyileşme odaklı
-              destek süreçlerinde yer almıştır.
+              She has worked across different mental health settings in both
+              Türkiye and the United Kingdom, taking part in psychological
+              assessments, client interviews and psychoeducation processes. In
+              the United Kingdom, she worked as a Mental Health Support Worker
+              and later as a Recovery Worker at We Are With You, supporting
+              adults through case management, motivational interviewing, risk
+              assessment and recovery-focused care.
             </p>
           </article>
 
           <article className="about-paragraph-card">
             <p>
-              Klinik çalışmalarını ağırlıklı olarak psikodinamik bakış
-              açısıyla sürdürmektedir. Terapiyi, bireyin kendisini daha
-              yakından tanıyabileceği, yaşadığı güçlükleri
-              anlamlandırabileceği ve kalıcı değişim için alan açabileceği bir
-              süreç olarak görmektedir. Türkçe ve İngilizce dillerinde
-              yetişkinlere yönelik yüz yüze ve çevrimiçi psikoterapi hizmeti
-              sunmaktadır.
+              Her clinical work is primarily informed by a psychodynamic
+              perspective. She views therapy as a process in which individuals
+              can understand themselves more deeply, make sense of their
+              difficulties and create space for lasting change. She offers
+              face-to-face and online psychotherapy for adults in both Turkish
+              and English.
             </p>
           </article>
         </div>
@@ -247,22 +245,22 @@ export default function Home() {
 
 
       {/* AREAS OF WORK */}
-      <section className="areas section-shell" id="alanlar">
+      <section className="areas section-shell" id="areas">
         <div className="areas-header">
           <span className="section-index">02</span>
 
           <div className="areas-heading">
-            <p className="section-label">ÇALIŞMA ALANLARIM</p>
+            <p className="section-label">AREAS OF WORK</p>
 
             <h2>
-              Terapi sürecinde
+              Areas that may be explored
               <br />
-              <span>çalışılabilecek başlıklar.</span>
+              <span>through the therapy process.</span>
             </h2>
 
             <p className="areas-description">
-              Çalışma alanlarıyla ilgili detaylı bilgi için ilgili başlığı
-              seçebilirsiniz.
+              Select a topic to learn more about the areas that may be
+              addressed in therapy.
             </p>
           </div>
         </div>
@@ -270,52 +268,52 @@ export default function Home() {
         <div className="areas-grid">
           <a
             className="area-card"
-            href="/calisma-alanlari/anksiyete"
-            aria-label="Anksiyete hakkında detaylı bilgi"
+            href="/en/areas-of-work/anxiety"
+            aria-label="Learn more about anxiety"
           >
             <span className="area-number">01</span>
             <div>
-              <h3>Anksiyete</h3>
-              <p>Kaygı, yoğun endişe ve belirsizlikle ilişkili güçlükler.</p>
+              <h3>Anxiety</h3>
+              <p>Difficulties related to worry, uncertainty and anxiety.</p>
             </div>
             <span className="area-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a
             className="area-card"
-            href="/calisma-alanlari/depresyon"
-            aria-label="Depresyon hakkında detaylı bilgi"
+            href="/en/areas-of-work/depression"
+            aria-label="Learn more about depression"
           >
             <span className="area-number">02</span>
             <div>
-              <h3>Depresyon</h3>
-              <p>Duygudurum, isteksizlik ve yaşam enerjisindeki değişimler.</p>
+              <h3>Depression</h3>
+              <p>Changes in mood, motivation and engagement with daily life.</p>
             </div>
             <span className="area-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a
             className="area-card"
-            href="/calisma-alanlari/ofke-problemleri"
-            aria-label="Öfke problemleri hakkında detaylı bilgi"
+            href="/en/areas-of-work/anger"
+            aria-label="Learn more about anger difficulties"
           >
             <span className="area-number">03</span>
             <div>
-              <h3>Öfke Problemleri</h3>
-              <p>Öfkeyi anlamlandırma, ifade etme ve düzenleme güçlükleri.</p>
+              <h3>Anger Difficulties</h3>
+              <p>Difficulties understanding, expressing and regulating anger.</p>
             </div>
             <span className="area-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a
             className="area-card"
-            href="/calisma-alanlari/goc-ve-uyum"
-            aria-label="Göç ve uyum süreçleri hakkında detaylı bilgi"
+            href="/en/areas-of-work/migration-adjustment"
+            aria-label="Learn more about migration and adjustment"
           >
             <span className="area-number">04</span>
             <div>
-              <h3>Göç ve Uyum Süreçleri</h3>
-              <p>Yeni bir ülke, kültür veya yaşam düzenine uyum süreçleri.</p>
+              <h3>Migration &amp; Adjustment</h3>
+              <p>Adjusting to a new country, culture or way of life.</p>
             </div>
             <span className="area-arrow" aria-hidden="true">↗</span>
           </a>
