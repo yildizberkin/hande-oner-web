@@ -388,18 +388,16 @@ export default function Home() {
 
         {/* PORTRAIT */}
         <div className="hero-visual reveal visual-reveal">
-          <div className="portrait-frame">
-            <div className="portrait-tilt">
-              <div className="portrait-image-wrap">
-                <Image
-                  src="/images/hande-oner-portrait.webp"
-                  alt="Uzman Psikolog Hande Öner"
-                  fill
-                  priority
-                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
-                  className="portrait-image"
-                />
-              </div>
+          <div className="portrait-frame portrait-frame-straight">
+            <div className="portrait-image-wrap">
+              <Image
+                src="/images/hande-oner-portrait.webp"
+                alt="Uzman Psikolog Hande Öner"
+                fill
+                priority
+                sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
+                className="portrait-image"
+              />
             </div>
           </div>
         </div>
@@ -688,6 +686,182 @@ export default function Home() {
           })}
         </div>
       </section>
+
+
+      {/* CONTACT */}
+      <section className="contact section-shell" id="iletisim">
+        <div className="contact-header">
+          <span className="section-index">05</span>
+
+          <div className="contact-heading">
+            <p className="section-label">İLETİŞİM &amp; SEANS TALEBİ</p>
+
+            <h2>
+              İlk adımı atmak için
+              <br />
+              <span>benimle iletişime geçin.</span>
+            </h2>
+
+            <p className="contact-intro">
+              Seans talebi, soru veya ön görüşme isteğiniz için aşağıdaki formu
+              kullanabilirsiniz. Bu form şu aşamada tasarım amaçlıdır; form
+              altyapısı bir sonraki adımda e-posta iletilecek şekilde
+              bağlanacaktır.
+            </p>
+          </div>
+        </div>
+
+        <div className="contact-grid">
+          <aside className="contact-info-card">
+            <div className="contact-info-block">
+              <span className="contact-info-label">E-posta</span>
+              <a href="mailto:pskhandeoner@gmail.com" className="contact-info-value">
+                pskhandeoner@gmail.com
+              </a>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Görüşme Biçimi</span>
+              <p className="contact-info-value">Yüz Yüze &amp; Çevrimiçi</p>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Dil</span>
+              <p className="contact-info-value">Türkçe &amp; İngilizce</p>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Konum</span>
+              <p className="contact-info-value">Kadıköy, İstanbul</p>
+            </div>
+
+            <div className="contact-note-card">
+              <span className="contact-note-title">Önemli Not</span>
+              <p>
+                Form üzerinden mümkün olduğunca kısa bilgi paylaşmanız önerilir.
+                Lütfen hassas sağlık verilerinizi veya ayrıntılı özel
+                bilgilerinizi ilk mesajınızda iletmeyin.
+              </p>
+            </div>
+          </aside>
+
+          <div className="contact-form-card">
+            <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+              <div className="contact-form-grid">
+                <label className="form-field">
+                  <span>Ad Soyad</span>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Adınızı ve soyadınızı yazın"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>E-posta</span>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="ornek@mail.com"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Telefon</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="05xx xxx xx xx"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Görüşme Tercihi</span>
+                  <select name="sessionType" defaultValue="">
+                    <option value="" disabled>
+                      Seçiniz
+                    </option>
+                    <option value="online">Çevrimiçi</option>
+                    <option value="face-to-face">Yüz Yüze</option>
+                    <option value="either">Fark Etmez</option>
+                  </select>
+                </label>
+
+                <label className="form-field">
+                  <span>İletişim Tercihi</span>
+                  <select name="contactType" defaultValue="">
+                    <option value="" disabled>
+                      Seçiniz
+                    </option>
+                    <option value="email">E-posta</option>
+                    <option value="phone">Telefon</option>
+                  </select>
+                </label>
+
+                <label className="form-field form-field-full">
+                  <span>Kısa Mesaj</span>
+                  <textarea
+                    name="message"
+                    rows={6}
+                    placeholder="Kısaca ulaşma nedeninizi paylaşabilirsiniz."
+                  />
+                </label>
+              </div>
+
+              <div className="form-disclaimer">
+                Form gönderimi yayına alındığında, mesajınız doğrudan Hande
+                Öner&apos;e ulaştırılacaktır.
+              </div>
+
+              <div className="contact-form-actions">
+                <button type="submit" className="primary-button">
+                  Talebi Gönder
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="section-shell site-footer-shell">
+          <div className="site-footer-brand">
+            <span className="site-footer-name">Hande Öner</span>
+            <span className="site-footer-title">Uzman Psikolog</span>
+            <p>
+              Yetişkinlere yönelik yüz yüze ve çevrimiçi psikoterapi.
+            </p>
+          </div>
+
+          <div className="site-footer-links">
+            <div className="footer-link-group">
+              <span className="footer-link-title">Site</span>
+              <a href="#hakkimda">Hakkımda</a>
+              <a href="#alanlar">Çalışma Alanlarım</a>
+              <a href="/blog">Blog</a>
+              <a href="#sss">SSS</a>
+              <a href="#iletisim">İletişim</a>
+            </div>
+
+            <div className="footer-link-group">
+              <span className="footer-link-title">İletişim</span>
+              <a href="mailto:pskhandeoner@gmail.com">pskhandeoner@gmail.com</a>
+              <span>Kadıköy, İstanbul</span>
+              <span>Türkçe &amp; English</span>
+            </div>
+
+            <div className="footer-link-group">
+              <span className="footer-link-title">Bilgilendirme</span>
+              <span>
+                Bu sitedeki bilgiler genel bilgilendirme amaçlıdır; tanı,
+                değerlendirme veya psikoterapi yerine geçmez.
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
 
     </main>
   );
