@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -10,6 +11,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [flippedArea, setFlippedArea] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [contactMessage, setContactMessage] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +46,62 @@ export default function Home() {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      sessionType: String(formData.get("sessionType") ?? ""),
+      contactType: String(formData.get("contactType") ?? ""),
+      message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? ""),
+      turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+      language: "tr",
+    };
+
+    setContactStatus("sending");
+    setContactMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || "Mesaj gönderilemedi.");
+      }
+
+      setContactStatus("success");
+      setContactMessage("Talebiniz başarıyla iletildi. En kısa sürede sizinle iletişime geçilecektir.");
+      form.reset();
+
+      if (typeof window !== "undefined" && "turnstile" in window) {
+        const turnstile = (window as typeof window & {
+          turnstile?: { reset: () => void };
+        }).turnstile;
+        turnstile?.reset();
+      }
+    } catch (error) {
+      setContactStatus("error");
+      setContactMessage(
+        error instanceof Error
+          ? error.message
+          : "Bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+      );
+    }
   };
 
   const workAreas = [
@@ -156,6 +215,13 @@ export default function Home() {
             <div className="intro-glow intro-glow-two" />
           </div>
         </div>
+      )}
+
+      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+        />
       )}
 
       {/* NAVIGATION */}
@@ -704,9 +770,8 @@ export default function Home() {
 
             <p className="contact-intro">
               Seans talebi, soru veya ön görüşme isteğiniz için aşağıdaki formu
-              kullanabilirsiniz. Bu form şu aşamada tasarım amaçlıdır; form
-              altyapısı bir sonraki adımda e-posta iletilecek şekilde
-              bağlanacaktır.
+              kullanabilirsiniz. İlk mesajınızda hassas sağlık bilgileri
+              paylaşmamanız önerilir.
             </p>
           </div>
         </div>
@@ -746,13 +811,15 @@ export default function Home() {
           </aside>
 
           <div className="contact-form-card">
-            <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+            <form className="contact-form" onSubmit={handleContactSubmit}>
               <div className="contact-form-grid">
                 <label className="form-field">
                   <span>Ad Soyad</span>
                   <input
                     type="text"
                     name="name"
+                    autoComplete="name"
+                    required
                     placeholder="Adınızı ve soyadınızı yazın"
                   />
                 </label>
@@ -762,6 +829,8 @@ export default function Home() {
                   <input
                     type="email"
                     name="email"
+                    autoComplete="email"
+                    required
                     placeholder="ornek@mail.com"
                   />
                 </label>
@@ -771,13 +840,14 @@ export default function Home() {
                   <input
                     type="tel"
                     name="phone"
+                    autoComplete="tel"
                     placeholder="05xx xxx xx xx"
                   />
                 </label>
 
                 <label className="form-field">
                   <span>Görüşme Tercihi</span>
-                  <select name="sessionType" defaultValue="">
+                  <select name="sessionType" defaultValue="" required>
                     <option value="" disabled>
                       Seçiniz
                     </option>
@@ -789,7 +859,7 @@ export default function Home() {
 
                 <label className="form-field">
                   <span>İletişim Tercihi</span>
-                  <select name="contactType" defaultValue="">
+                  <select name="contactType" defaultValue="" required>
                     <option value="" disabled>
                       Seçiniz
                     </option>
@@ -803,22 +873,61 @@ export default function Home() {
                   <textarea
                     name="message"
                     rows={6}
+                    maxLength={1500}
                     placeholder="Kısaca ulaşma nedeninizi paylaşabilirsiniz."
                   />
                 </label>
               </div>
 
+              <div className="form-honeypot" aria-hidden="true">
+                <label>
+                  Web sitesi
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </label>
+              </div>
+
+              {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+                <div className="turnstile-wrap">
+                  <div
+                    className="cf-turnstile"
+                    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    data-theme="light"
+                    data-size="flexible"
+                  />
+                </div>
+              )}
+
               <div className="form-disclaimer">
-                Form gönderimi yayına alındığında, mesajınız doğrudan Hande
-                Öner&apos;e ulaştırılacaktır.
+                Form üzerinden gönderdiğiniz iletişim bilgileri yalnızca size
+                dönüş yapmak amacıyla kullanılacaktır.
               </div>
 
               <div className="contact-form-actions">
-                <button type="submit" className="primary-button">
-                  Talebi Gönder
+                <button
+                  type="submit"
+                  className="primary-button"
+                  disabled={contactStatus === "sending"}
+                >
+                  {contactStatus === "sending" ? "Gönderiliyor..." : "Talebi Gönder"}
                   <span aria-hidden="true">↗</span>
                 </button>
               </div>
+
+              {contactMessage && (
+                <p
+                  className={`contact-form-status ${
+                    contactStatus === "success" ? "is-success" : "is-error"
+                  }`}
+                  role="status"
+                >
+                  {contactMessage}
+                </p>
+              )}
             </form>
           </div>
         </div>

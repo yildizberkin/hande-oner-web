@@ -3311,3 +3311,42 @@ main {
       0.01ms !important;
   }
 }
+
+/* =========================================================
+   CONTACT FORM — RUNTIME / SECURITY STATES
+========================================================= */
+
+.form-honeypot {
+  display: none !important;
+}
+
+.turnstile-wrap {
+  margin-top: 18px;
+  max-width: 100%;
+}
+
+.contact-form-status {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.contact-form-status.is-success {
+  border: 1px solid rgba(67, 48, 46, 0.12);
+  background: rgba(193, 219, 232, 0.30);
+  color: var(--text);
+}
+
+.contact-form-status.is-error {
+  border: 1px solid rgba(67, 48, 46, 0.16);
+  background: rgba(255, 241, 181, 0.42);
+  color: var(--text);
+}
+
+.contact-form .primary-button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+  transform: none;
+}

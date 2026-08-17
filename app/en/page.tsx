@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -10,6 +11,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [flippedArea, setFlippedArea] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [contactMessage, setContactMessage] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +46,66 @@ export default function Home() {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      sessionType: String(formData.get("sessionType") ?? ""),
+      contactType: String(formData.get("contactType") ?? ""),
+      message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? ""),
+      turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
+      language: "en",
+    };
+
+    setContactStatus("sending");
+    setContactMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || "Your message could not be sent.");
+      }
+
+      setContactStatus("success");
+      setContactMessage(
+        "Your request has been sent successfully. You will be contacted as soon as possible.",
+      );
+      form.reset();
+
+      if (typeof window !== "undefined" && "turnstile" in window) {
+        const turnstile = (
+          window as typeof window & {
+            turnstile?: { reset: () => void };
+          }
+        ).turnstile;
+        turnstile?.reset();
+      }
+    } catch (error) {
+      setContactStatus("error");
+      setContactMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again later.",
+      );
+    }
   };
 
   const workAreas = [
@@ -156,6 +219,13 @@ export default function Home() {
             <div className="intro-glow intro-glow-two" />
           </div>
         </div>
+      )}
+
+      {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+        />
       )}
 
       {/* NAVIGATION */}
@@ -388,18 +458,16 @@ export default function Home() {
 
         {/* PORTRAIT */}
         <div className="hero-visual reveal visual-reveal">
-          <div className="portrait-frame">
-            <div className="portrait-tilt">
-              <div className="portrait-image-wrap">
-                <Image
-                  src="/images/hande-oner-portrait.webp"
-                  alt="Psychologist Hande Öner"
-                  fill
-                  priority
-                  sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
-                  className="portrait-image"
-                />
-              </div>
+          <div className="portrait-frame portrait-frame-straight">
+            <div className="portrait-image-wrap">
+              <Image
+                src="/images/hande-oner-portrait.webp"
+                alt="Psychologist Hande Öner"
+                fill
+                priority
+                sizes="(max-width: 767px) 100vw, (max-width: 991px) 720px, 42vw"
+                className="portrait-image"
+              />
             </div>
           </div>
         </div>
@@ -684,6 +752,162 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      {/* CONTACT */}
+      <section className="contact section-shell" id="contact">
+        <div className="contact-header">
+          <span className="section-index">05</span>
+          <div className="contact-heading">
+            <p className="section-label">CONTACT &amp; SESSION REQUEST</p>
+            <h2>Take the first step<br /><span>and get in touch.</span></h2>
+            <p className="contact-intro">You can use the form below to request a session, ask a question or make an initial enquiry. The email delivery backend will be connected in the next implementation step.</p>
+          </div>
+        </div>
+        <div className="contact-grid">
+          <aside className="contact-info-card">
+            <div className="contact-info-block"><span className="contact-info-label">Email</span><a href="mailto:pskhandeoner@gmail.com" className="contact-info-value">pskhandeoner@gmail.com</a></div>
+            <div className="contact-info-block"><span className="contact-info-label">Session Format</span><p className="contact-info-value">Face-to-Face &amp; Online</p></div>
+            <div className="contact-info-block"><span className="contact-info-label">Languages</span><p className="contact-info-value">Turkish &amp; English</p></div>
+            <div className="contact-info-block"><span className="contact-info-label">Location</span><p className="contact-info-value">Kadıköy, Istanbul</p></div>
+            <div className="contact-note-card"><span className="contact-note-title">Important Note</span><p>Please keep your first message brief where possible. Avoid sharing sensitive health information or detailed private information through this form.</p></div>
+          </aside>
+          <div className="contact-form-card">
+            <form className="contact-form" onSubmit={handleContactSubmit}>
+              <div className="contact-form-grid">
+                <label className="form-field">
+                  <span>Full Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    required
+                    maxLength={120}
+                    placeholder="Enter your full name"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    required
+                    maxLength={254}
+                    placeholder="example@email.com"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Phone</span>
+                  <input
+                    type="tel"
+                    name="phone"
+                    autoComplete="tel"
+                    maxLength={40}
+                    placeholder="Your phone number"
+                  />
+                </label>
+
+                <label className="form-field">
+                  <span>Session Preference</span>
+                  <select name="sessionType" defaultValue="" required>
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    <option value="online">Online</option>
+                    <option value="face-to-face">Face-to-Face</option>
+                    <option value="either">No Preference</option>
+                  </select>
+                </label>
+
+                <label className="form-field">
+                  <span>Preferred Contact Method</span>
+                  <select name="contactType" defaultValue="" required>
+                    <option value="" disabled>
+                      Select
+                    </option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone</option>
+                  </select>
+                </label>
+
+                <label className="form-field form-field-full">
+                  <span>Short Message</span>
+                  <textarea
+                    name="message"
+                    rows={6}
+                    maxLength={1500}
+                    placeholder="You may briefly share the reason for getting in touch."
+                  />
+                </label>
+              </div>
+
+              <div className="form-honeypot" aria-hidden="true">
+                <label>
+                  Website
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </label>
+              </div>
+
+              {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+                <div className="turnstile-wrap">
+                  <div
+                    className="cf-turnstile"
+                    data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    data-theme="light"
+                    data-size="flexible"
+                  />
+                </div>
+              )}
+
+              <div className="form-disclaimer">
+                The contact details you submit will only be used to respond to
+                your enquiry.
+              </div>
+
+              <div className="contact-form-actions">
+                <button
+                  type="submit"
+                  className="primary-button"
+                  disabled={contactStatus === "sending"}
+                >
+                  {contactStatus === "sending" ? "Sending..." : "Send Request"}
+                  <span aria-hidden="true">↗</span>
+                </button>
+              </div>
+
+              {contactMessage && (
+                <p
+                  className={`contact-form-status ${
+                    contactStatus === "success" ? "is-success" : "is-error"
+                  }`}
+                  role="status"
+                >
+                  {contactMessage}
+                </p>
+              )}
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="section-shell site-footer-shell">
+          <div className="site-footer-brand"><span className="site-footer-name">Hande Öner</span><span className="site-footer-title">Psychologist</span><p>Face-to-face and online psychotherapy for adults.</p></div>
+          <div className="site-footer-links">
+            <div className="footer-link-group"><span className="footer-link-title">Site</span><a href="#about">About</a><a href="#areas">Areas of Work</a><a href="/en/blog">Blog</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+            <div className="footer-link-group"><span className="footer-link-title">Contact</span><a href="mailto:pskhandeoner@gmail.com">pskhandeoner@gmail.com</a><span>Kadıköy, Istanbul</span><span>Turkish &amp; English</span></div>
+            <div className="footer-link-group"><span className="footer-link-title">Information</span><span>The information on this website is for general informational purposes and does not replace assessment, diagnosis or psychotherapy.</span></div>
+          </div>
+        </div>
+      </footer>
 
     </main>
   );
