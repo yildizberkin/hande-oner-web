@@ -1,20 +1,21 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "hande-oner-web",
-	"main": ".open-next/worker.js",
-	"compatibility_date": "2026-08-18",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
-	"assets": {
-		"directory": ".open-next/assets",
-		"binding": "ASSETS"
-	},
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "hande-oner-cms",
-			"database_id": "eb19700e-0466-4900-ab96-d251c37e9fdf"
-		}
-	]
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "hande-oner-web",
+  "account_id": "bc813989c3bcf62a45cb74977570c4a1",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-18",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hande-oner-cms",
+      "database_id": "eb8d40d8-73f6-47d4-993f-6bde49c4ba55"
+    }
+  ]
 }
