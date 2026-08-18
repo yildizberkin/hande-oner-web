@@ -111,6 +111,7 @@ export default function Home() {
   const workAreas = [
     {
       id: "anxiety",
+      slug: "anxiety-disorders",
       title: "Anxiety Disorders",
       short: "Difficulties related to intense anxiety, worry and uncertainty.",
       detail:
@@ -118,6 +119,7 @@ export default function Home() {
     },
     {
       id: "depression",
+      slug: "depression",
       title: "Depression",
       short: "Changes in mood, motivation and engagement with daily life.",
       detail:
@@ -125,6 +127,7 @@ export default function Home() {
     },
     {
       id: "relationship-difficulties",
+      slug: "relationship-difficulties",
       title: "Relationship Difficulties",
       short: "Recurring conflict and difficulties forming or maintaining close connections.",
       detail:
@@ -132,6 +135,7 @@ export default function Home() {
     },
     {
       id: "self-esteem",
+      slug: "self-esteem-and-self-perception",
       title: "Self-Esteem & Self-Perception",
       short: "Difficulties related to self-worth, self-criticism and self-perception.",
       detail:
@@ -139,6 +143,7 @@ export default function Home() {
     },
     {
       id: "loneliness",
+      slug: "loneliness",
       title: "Loneliness",
       short: "Difficulty feeling connected and experiences of emotional loneliness.",
       detail:
@@ -146,6 +151,7 @@ export default function Home() {
     },
     {
       id: "anger",
+      slug: "anger-management",
       title: "Anger Management",
       short: "Difficulties understanding, expressing and regulating anger.",
       detail:
@@ -153,6 +159,7 @@ export default function Home() {
     },
     {
       id: "grief-loss",
+      slug: "grief-and-loss",
       title: "Grief & Loss",
       short: "Emotional processes following loss, separation and significant change.",
       detail:
@@ -160,6 +167,7 @@ export default function Home() {
     },
     {
       id: "migration-adjustment",
+      slug: "migration-and-adjustment",
       title: "Migration & Adjustment",
       short: "Adjusting to a new country, culture or way of life.",
       detail:
@@ -561,39 +569,47 @@ export default function Home() {
             const isFlipped = flippedArea === area.id;
 
             return (
-              <button
-                key={area.id}
-                type="button"
-                className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
-                onClick={() => setFlippedArea(isFlipped ? null : area.id)}
-                aria-pressed={isFlipped}
-                aria-label={`Turn ${area.title} card ${isFlipped ? "to the front" : "to the back"}`}
-              >
-                <span className="area-card-inner">
-                  <span className="area-card-face area-card-front">
-                    <span className="area-number">
-                      {String(index + 1).padStart(2, "0")}
+              <article className="area-card-shell" key={area.id}>
+                <button
+                  type="button"
+                  className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
+                  onClick={() => setFlippedArea(isFlipped ? null : area.id)}
+                  aria-pressed={isFlipped}
+                  aria-label={`Turn ${area.title} card ${isFlipped ? "to the front" : "to the back"}`}
+                >
+                  <span className="area-card-inner">
+                    <span className="area-card-face area-card-front">
+                      <span className="area-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <span className="area-card-copy">
+                        <strong>{area.title}</strong>
+                        <span>{area.short}</span>
+                      </span>
+
+                      <span className="area-flip-hint" aria-hidden="true">
+                        ↻
+                      </span>
                     </span>
 
-                    <span className="area-card-copy">
-                      <strong>{area.title}</strong>
-                      <span>{area.short}</span>
-                    </span>
-
-                    <span className="area-flip-hint" aria-hidden="true">
-                      ↻
+                    <span className="area-card-face area-card-back">
+                      <span className="area-back-label">BRIEF OVERVIEW</span>
+                      <span className="area-back-text">{area.detail}</span>
+                      <span className="area-back-return" aria-hidden="true">
+                        Turn back ↻
+                      </span>
                     </span>
                   </span>
+                </button>
 
-                  <span className="area-card-face area-card-back">
-                    <span className="area-back-label">BRIEF OVERVIEW</span>
-                    <span className="area-back-text">{area.detail}</span>
-                    <span className="area-back-return" aria-hidden="true">
-                      Turn back ↻
-                    </span>
-                  </span>
-                </span>
-              </button>
+                <a
+                  className="area-detail-link"
+                  href={`/en/areas-of-work/${area.slug}`}
+                >
+                  Read more <span aria-hidden="true">↗</span>
+                </a>
+              </article>
             );
           })}
         </div>

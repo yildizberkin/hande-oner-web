@@ -1,0 +1,28 @@
+HANDE ÖNER ADMIN AUTH — FINAL HANDOFF PLAN
+
+Current development login:
+- password-only local admin login remains unchanged for now.
+
+Final delivery authentication:
+1. Admin email will be Hande's own email.
+2. Login flow:
+   - Hande enters email/password.
+   - A one-time verification code is sent to Hande's email.
+   - Code expires quickly and is single-use.
+   - Successful verification creates the admin session.
+3. Forgot password:
+   - "Şifremi unuttum" link on /admin/login.
+   - Hande enters her admin email.
+   - Reset email contains a short-lived, single-use reset link/token.
+   - Hande chooses a new password.
+   - Existing sessions/reset tokens can be invalidated as needed.
+4. Security:
+   - Do not store raw reset tokens or codes.
+   - Rate-limit login, code-send, code-check and reset endpoints.
+   - Generic forgot-password response to avoid revealing whether an email exists.
+   - Expiration + single-use enforcement.
+   - HttpOnly/Secure/SameSite session cookie.
+5. Mail transport:
+   - Complete when final domain/Cloudflare/Resend setup is available.
+
+No non-working forgot-password UI is added in V2.1. Add it only when the email flow is functional.

@@ -107,6 +107,7 @@ export default function Home() {
   const workAreas = [
     {
       id: "kaygi",
+      slug: "kaygi-bozukluklari",
       title: "Kaygı Bozuklukları",
       short: "Yoğun kaygı, endişe ve belirsizlikle ilişkili güçlükler.",
       detail:
@@ -114,6 +115,7 @@ export default function Home() {
     },
     {
       id: "depresyon",
+      slug: "depresyon",
       title: "Depresyon",
       short: "Duygudurum, isteksizlik ve yaşam enerjisindeki değişimler.",
       detail:
@@ -121,6 +123,7 @@ export default function Home() {
     },
     {
       id: "iliskisel-zorluklar",
+      slug: "iliskisel-zorluklar",
       title: "İlişkisel Zorluklar",
       short: "Yakın ilişkilerde tekrar eden çatışmalar ve bağ kurma güçlükleri.",
       detail:
@@ -128,6 +131,7 @@ export default function Home() {
     },
     {
       id: "ozsaygi",
+      slug: "ozsaygi-ve-benlik-algisi",
       title: "Özsaygı ve Benlik Algısı",
       short: "Kendilik değeri, öz eleştiri ve benlik algısıyla ilgili güçlükler.",
       detail:
@@ -135,6 +139,7 @@ export default function Home() {
     },
     {
       id: "yalnizlik",
+      slug: "yalnizlik",
       title: "Yalnızlık",
       short: "Bağ kurmakta zorlanma ve duygusal yalnızlık deneyimleri.",
       detail:
@@ -142,6 +147,7 @@ export default function Home() {
     },
     {
       id: "ofke",
+      slug: "ofke-yonetimi",
       title: "Öfke Yönetimi",
       short: "Öfkeyi anlamlandırma, ifade etme ve düzenleme güçlükleri.",
       detail:
@@ -149,6 +155,7 @@ export default function Home() {
     },
     {
       id: "yas-kayip",
+      slug: "yas-ve-kayip-surecleri",
       title: "Yas ve Kayıp Süreçleri",
       short: "Kayıp, ayrılık ve değişim sonrasında yaşanan duygusal süreçler.",
       detail:
@@ -156,6 +163,7 @@ export default function Home() {
     },
     {
       id: "goc-uyum",
+      slug: "goc-ve-uyum-surecleri",
       title: "Göç ve Uyum Süreçleri",
       short: "Yeni bir ülke, kültür veya yaşam düzenine uyum süreçleri.",
       detail:
@@ -559,39 +567,47 @@ export default function Home() {
             const isFlipped = flippedArea === area.id;
 
             return (
-              <button
-                key={area.id}
-                type="button"
-                className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
-                onClick={() => setFlippedArea(isFlipped ? null : area.id)}
-                aria-pressed={isFlipped}
-                aria-label={`${area.title} kartını ${isFlipped ? "ön yüze" : "arka yüze"} çevir`}
-              >
-                <span className="area-card-inner">
-                  <span className="area-card-face area-card-front">
-                    <span className="area-number">
-                      {String(index + 1).padStart(2, "0")}
+              <article className="area-card-shell" key={area.id}>
+                <button
+                  type="button"
+                  className={`area-flip-card ${isFlipped ? "is-flipped" : ""}`}
+                  onClick={() => setFlippedArea(isFlipped ? null : area.id)}
+                  aria-pressed={isFlipped}
+                  aria-label={`${area.title} kartını ${isFlipped ? "ön yüze" : "arka yüze"} çevir`}
+                >
+                  <span className="area-card-inner">
+                    <span className="area-card-face area-card-front">
+                      <span className="area-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <span className="area-card-copy">
+                        <strong>{area.title}</strong>
+                        <span>{area.short}</span>
+                      </span>
+
+                      <span className="area-flip-hint" aria-hidden="true">
+                        ↻
+                      </span>
                     </span>
 
-                    <span className="area-card-copy">
-                      <strong>{area.title}</strong>
-                      <span>{area.short}</span>
-                    </span>
-
-                    <span className="area-flip-hint" aria-hidden="true">
-                      ↻
+                    <span className="area-card-face area-card-back">
+                      <span className="area-back-label">KISA BİLGİ</span>
+                      <span className="area-back-text">{area.detail}</span>
+                      <span className="area-back-return" aria-hidden="true">
+                        Tekrar çevir ↻
+                      </span>
                     </span>
                   </span>
+                </button>
 
-                  <span className="area-card-face area-card-back">
-                    <span className="area-back-label">KISA BİLGİ</span>
-                    <span className="area-back-text">{area.detail}</span>
-                    <span className="area-back-return" aria-hidden="true">
-                      Tekrar çevir ↻
-                    </span>
-                  </span>
-                </span>
-              </button>
+                <a
+                  className="area-detail-link"
+                  href={`/calisma-alanlari/${area.slug}`}
+                >
+                  Detaylı bilgi <span aria-hidden="true">↗</span>
+                </a>
+              </article>
             );
           })}
         </div>

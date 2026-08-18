@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { getSiteUrl } from "@/lib/site";
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: {
@@ -8,16 +11,17 @@ export const metadata: Metadata = {
   description:
     "Psychologist Hande Öner offers face-to-face and online psychotherapy for adults in Turkish and English.",
   alternates: {
-    canonical: "/en",
+    canonical: `${siteUrl}/en`,
     languages: {
-      "tr-TR": "/",
-      "en-GB": "/en",
+      "tr-TR": `${siteUrl}/`,
+      "en-GB": `${siteUrl}/en`,
     },
   },
   openGraph: {
     title: "Hande Öner | Psychologist",
     description:
       "Face-to-face and online psychotherapy for adults in Turkish and English.",
+    url: `${siteUrl}/en`,
     type: "website",
     locale: "en_GB",
   },
@@ -28,5 +32,5 @@ export default function EnglishLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return <div lang="en">{children}</div>;
 }
