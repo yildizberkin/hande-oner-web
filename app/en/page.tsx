@@ -78,7 +78,7 @@ export default function Home() {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      const data = await response.json() as { message?: string };
 
       if (!response.ok) {
         throw new Error(data?.message || "Your message could not be sent.");

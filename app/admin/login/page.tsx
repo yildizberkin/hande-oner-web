@@ -19,7 +19,7 @@ export default function AdminLoginPage() {
     });
 
     if (!response.ok) {
-      const data = await response.json();
+      const data = await response.json() as { message?: string };
       setStatus("error");
       setMessage(data.message ?? "Giriş başarısız.");
       return;

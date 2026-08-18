@@ -71,12 +71,14 @@ export default function RichEditor({
     return <div className="rich-editor-loading">Editör hazırlanıyor...</div>;
   }
 
+  const activeEditor = editor;
+
   function applyLink() {
     const href = linkUrl.trim();
     if (!href) {
-      editor.chain().focus().unsetLink().run();
+      activeEditor.chain().focus().unsetLink().run();
     } else {
-      editor.chain().focus().extendMarkRange("link").setLink({ href }).run();
+      activeEditor.chain().focus().extendMarkRange("link").setLink({ href }).run();
     }
     setLinkPanel(false);
     setLinkUrl("");

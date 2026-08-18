@@ -81,8 +81,8 @@ export default function AdminDashboard() {
       return;
     }
 
-    const postsData = await postsResponse.json();
-    const categoriesData = await categoriesResponse.json();
+    const postsData = await postsResponse.json() as { posts?: BlogPost[] };
+    const categoriesData = await categoriesResponse.json() as { categories?: Category[] };
     setPosts(postsData.posts ?? []);
     setCategories(categoriesData.categories ?? []);
     setLoading(false);
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
 
     const history = await fetch(`/api/admin/posts/${id}/revisions`, { cache: "no-store" });
     if (history.ok) {
-      const data = await history.json();
+      const data = await history.json() as { revisions?: Revision[] };
       setRevisions(data.revisions ?? []);
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
       },
     );
 
-    const data = await response.json();
+    const data = await response.json() as { message?: string; id?: number };
     setSaving(false);
 
     if (!response.ok) {
