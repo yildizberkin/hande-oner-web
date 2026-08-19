@@ -7,6 +7,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://handeoner.com"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
