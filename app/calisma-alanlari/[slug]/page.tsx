@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import { getSiteUrl } from "@/lib/site";
 import { getTurkishWorkArea, workAreas } from "@/lib/work-areas";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return workAreas.map((area) => ({ slug: area.trSlug }));
 }
