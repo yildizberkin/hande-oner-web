@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   },
   description:
     "Uzman Psikolog Hande Öner, yetişkinlere Türkçe ve İngilizce yüz yüze ve çevrimiçi psikoterapi hizmeti sunmaktadır.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
   alternates: {
     canonical: `${siteUrl}/`,
     languages: {
