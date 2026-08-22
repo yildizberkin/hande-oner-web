@@ -26,6 +26,7 @@ export default function WorkAreaNavbar({ language }: WorkAreaNavbarProps) {
         { href: "/#alanlar", label: "Çalışma Alanlarım", active: true },
         { href: "/blog", label: "Blog" },
         { href: "/#sss", label: "SSS" },
+        { href: "/#danisan-haklari", label: "Danışan Hakları" },
         { href: "/#iletisim", label: "İletişim" },
       ]
     : [
@@ -33,6 +34,7 @@ export default function WorkAreaNavbar({ language }: WorkAreaNavbarProps) {
         { href: "/en#areas", label: "Areas of Work", active: true },
         { href: "/en/blog", label: "Blog" },
         { href: "/en#faq", label: "FAQ" },
+        { href: "/en#client-rights", label: "Client Rights" },
         { href: "/en#contact", label: "Contact" },
       ];
 

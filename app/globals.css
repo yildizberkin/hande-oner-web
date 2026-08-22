@@ -7056,3 +7056,181 @@ main {
     font-size: clamp(25px, 8vw, 34px);
   }
 }
+
+
+/* TASK 12 — CLIENT RIGHTS */
+
+.client-rights {
+  padding-top: var(--section-space-md);
+  padding-bottom: var(--section-space-lg);
+}
+
+.client-rights-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.client-rights-heading {
+  max-width: 1000px;
+}
+
+.client-rights-heading h2 {
+  margin-top: 18px;
+
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: clamp(46px, 5.8vw, 82px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+}
+
+.client-rights-heading h2 span {
+  color: var(--muted);
+}
+
+.client-rights-intro {
+  max-width: 720px;
+  margin-top: 28px;
+
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.client-rights-grid {
+  width: min(100%, 1080px);
+  margin-top: 58px;
+  margin-left: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.client-right-card {
+  min-height: 190px;
+  padding: 26px 26px 24px;
+
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+
+  border: 1px solid rgba(193, 219, 232, 0.68);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(193, 219, 232, 0.15),
+      rgba(250, 247, 240, 0.80),
+      rgba(255, 241, 181, 0.10)
+    );
+
+  backdrop-filter: blur(16px) saturate(116%);
+  -webkit-backdrop-filter: blur(16px) saturate(116%);
+
+  box-shadow:
+    0 14px 34px rgba(67, 48, 46, 0.045),
+    0 7px 24px rgba(193, 219, 232, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.client-right-mark {
+  width: 29px;
+  height: 29px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(193, 219, 232, 0.95);
+  border-radius: 50%;
+
+  background: rgba(193, 219, 232, 0.22);
+  color: var(--old-burgundy);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.client-right-card h3 {
+  font-family: "Libre Caslon Text", Georgia, serif;
+  color: var(--text);
+
+  font-size: clamp(22px, 2vw, 29px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.client-right-card p {
+  max-width: 470px;
+  margin-top: 12px;
+
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.78;
+}
+
+@media (max-width: 991px) {
+  .client-rights-grid {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .client-rights {
+    padding-top: var(--section-space-md);
+    padding-bottom: var(--section-space-md);
+  }
+
+  .client-rights-heading h2 {
+    font-size: clamp(42px, 12vw, 62px);
+    letter-spacing: -0.03em;
+  }
+
+  .client-rights-intro {
+    margin-top: 22px;
+    font-size: 14px;
+    line-height: 1.78;
+  }
+
+  .client-rights-grid {
+    margin-top: 40px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .client-right-card {
+    min-height: 0;
+    padding: 22px 20px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .client-right-mark {
+    width: 27px;
+    height: 27px;
+  }
+
+  .client-right-card h3 {
+    font-size: 23px;
+  }
+}
+
+
+/* TASK 13 — CLIENT RIGHTS IN ALL NAVBARS */
+
+@media (min-width: 992px) and (max-width: 1320px) {
+  .nav-links,
+  .cms-blog-nav-links {
+    gap: 14px;
+    font-size: 11px;
+  }
+
+  .navbar,
+  .cms-blog-navbar {
+    gap: 18px;
+  }
+}

@@ -243,6 +243,7 @@ export default function Home() {
           <a href="#alanlar">Çalışma Alanlarım</a>
           <a href="/blog">Blog</a>
           <a href="#sss">SSS</a>
+          <a href="#danisan-haklari">Danışan Hakları</a>
           <a href="#iletisim">İletişim</a>
         </nav>
 
@@ -341,6 +342,9 @@ export default function Home() {
             </a>
             <a href="#sss" onClick={closeMobileMenu}>
               SSS
+            </a>
+            <a href="#danisan-haklari" onClick={closeMobileMenu}>
+              Danışan Hakları
             </a>
             <a href="#iletisim" onClick={closeMobileMenu}>
               İletişim
@@ -767,6 +771,103 @@ export default function Home() {
       </section>
 
 
+      {/* CLIENT RIGHTS */}
+      <section className="client-rights section-shell" id="danisan-haklari">
+        <div className="client-rights-header">
+          <div className="client-rights-heading">
+            <p className="section-label">DANIŞAN HAKLARI</p>
+
+            <h2>
+              Terapi sürecinde
+              <br />
+              <span>haklarınızı bilmeniz önemlidir.</span>
+            </h2>
+
+            <p className="client-rights-intro">
+              Terapi, yalnızca destek almak değil; aynı zamanda kendinizi
+              güvende, duyulmuş ve saygı görmüş hissettiğiniz bir alan
+              olmalıdır. Danışan olarak süreç boyunca bazı temel haklara
+              sahipsiniz.
+            </p>
+          </div>
+        </div>
+
+        <div className="client-rights-grid">
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Güvenli ve saygılı bir ilişki</h3>
+              <p>
+                Kendinizi güvende hissedebileceğiniz, duyulduğunuz ve saygı
+                gördüğünüz profesyonel bir terapötik ilişki içinde olmayı
+                bekleyebilirsiniz.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Bilgi alma ve soru sorma</h3>
+              <p>
+                Terapistin eğitim geçmişi, çalışma yaklaşımı ve terapi
+                sürecinin nasıl ilerlediği hakkında soru sorabilir ve anlaşılır
+                bilgi talep edebilirsiniz.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Sürece aktif olarak katılma</h3>
+              <p>
+                Terapi sırasında sizi zorlayan, rahatsız eden veya size uygun
+                gelmeyen noktaları paylaşabilir; ihtiyaçlarınızı ve
+                beklentilerinizi açıkça ifade edebilirsiniz.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Gizlilik ve mahremiyet</h3>
+              <p>
+                Paylaştığınız bilgilerin gizliliği ve bu gizliliğin hangi
+                istisnai durumlarda sınırlandırılabileceği konusunda
+                bilgilendirilmeyi bekleyebilirsiniz.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Süreci durdurma veya sonlandırma</h3>
+              <p>
+                Terapi sürecini sürdürmek istemediğinizde bunu ifade edebilir ve
+                kendi kararınız doğrultusunda süreci durdurabilir veya
+                sonlandırabilirsiniz.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Farklı destek seçeneklerini değerlendirme</h3>
+              <p>
+                İhtiyaç duyduğunuzda başka bir uzmana yönlendirme, ikinci görüş
+                veya size daha uygun olabilecek farklı destek seçenekleri
+                hakkında bilgi isteyebilirsiniz.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
       {/* CONTACT */}
       <section className="contact section-shell" id="iletisim">
         <div className="contact-header">
@@ -973,6 +1074,7 @@ export default function Home() {
               <a href="#alanlar">Çalışma Alanlarım</a>
               <a href="/blog">Blog</a>
               <a href="#sss">SSS</a>
+              <a href="#danisan-haklari">Danışan Hakları</a>
               <a href="#iletisim">İletişim</a>
             </div>
 

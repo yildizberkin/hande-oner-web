@@ -247,6 +247,7 @@ export default function Home() {
           <a href="#areas">Areas of Work</a>
           <a href="/en/blog">Blog</a>
           <a href="#faq">FAQ</a>
+          <a href="#client-rights">Client Rights</a>
           <a href="#contact">Contact</a>
         </nav>
 
@@ -345,6 +346,9 @@ export default function Home() {
             </a>
             <a href="#faq" onClick={closeMobileMenu}>
               FAQ
+            </a>
+            <a href="#client-rights" onClick={closeMobileMenu}>
+              Client Rights
             </a>
             <a href="#contact" onClick={closeMobileMenu}>
               Contact
@@ -767,6 +771,101 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CLIENT RIGHTS */}
+      <section className="client-rights section-shell" id="client-rights">
+        <div className="client-rights-header">
+          <div className="client-rights-heading">
+            <p className="section-label">CLIENT RIGHTS</p>
+
+            <h2>
+              Knowing your rights
+              <br />
+              <span>is part of a safe therapy process.</span>
+            </h2>
+
+            <p className="client-rights-intro">
+              Therapy should not only be a place to receive support; it should
+              also be a space where you feel safe, heard and respected. As a
+              client, you have a number of fundamental rights throughout the
+              process.
+            </p>
+          </div>
+        </div>
+
+        <div className="client-rights-grid">
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>A safe and respectful relationship</h3>
+              <p>
+                You can expect a professional therapeutic relationship in which
+                you feel safe, listened to and treated with respect.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Information and questions</h3>
+              <p>
+                You may ask about your therapist&apos;s training, therapeutic
+                approach and how the process works, and request information in
+                a clear and understandable form.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Active participation in the process</h3>
+              <p>
+                You may raise anything that feels difficult, uncomfortable or
+                unsuitable during therapy and openly communicate your needs and
+                expectations.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Privacy and confidentiality</h3>
+              <p>
+                You can expect to be informed about how your information is
+                kept confidential and the exceptional circumstances in which
+                confidentiality may be limited.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Pausing or ending therapy</h3>
+              <p>
+                If you no longer wish to continue, you may communicate this and
+                pause or end therapy according to your own decision.
+              </p>
+            </div>
+          </article>
+
+          <article className="client-right-card">
+            <span className="client-right-mark" aria-hidden="true">✓</span>
+            <div>
+              <h3>Considering other forms of support</h3>
+              <p>
+                When needed, you may ask about referral to another professional,
+                a second opinion or other forms of support that may be more
+                appropriate for you.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
       {/* CONTACT */}
       <section className="contact section-shell" id="contact">
         <div className="contact-header">
@@ -960,7 +1059,7 @@ export default function Home() {
         <div className="section-shell site-footer-shell">
           <div className="site-footer-brand"><span className="site-footer-name">Hande Öner</span><span className="site-footer-title">Psychologist</span><p>Face-to-face and online psychotherapy for adults.</p></div>
           <div className="site-footer-links">
-            <div className="footer-link-group"><span className="footer-link-title">Site</span><a href="#about">About</a><a href="#areas">Areas of Work</a><a href="/en/blog">Blog</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
+            <div className="footer-link-group"><span className="footer-link-title">Site</span><a href="#about">About</a><a href="#areas">Areas of Work</a><a href="/en/blog">Blog</a><a href="#faq">FAQ</a><a href="#client-rights">Client Rights</a><a href="#contact">Contact</a></div>
             <div className="footer-link-group"><span className="footer-link-title">Contact</span><a href="mailto:pskhandeoner@gmail.com">pskhandeoner@gmail.com</a><span>Kadıköy, Istanbul</span><span>Turkish &amp; English</span></div>
             <div className="footer-link-group"><span className="footer-link-title">Information</span><span>The information on this website is for general informational purposes and does not replace assessment, diagnosis or psychotherapy.</span></div>
           </div>

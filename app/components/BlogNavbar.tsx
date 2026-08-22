@@ -30,6 +30,7 @@ export default function BlogNavbar({ language }: BlogNavbarProps) {
         { href: "/#alanlar", label: "Çalışma Alanlarım" },
         { href: "/blog", label: "Blog", active: true },
         { href: "/#sss", label: "SSS" },
+        { href: "/#danisan-haklari", label: "Danışan Hakları" },
         { href: "/#iletisim", label: "İletişim" },
       ]
     : [
@@ -37,6 +38,7 @@ export default function BlogNavbar({ language }: BlogNavbarProps) {
         { href: "/en#areas", label: "Areas of Work" },
         { href: "/en/blog", label: "Blog", active: true },
         { href: "/en#faq", label: "FAQ" },
+        { href: "/en#client-rights", label: "Client Rights" },
         { href: "/en#contact", label: "Contact" },
       ];
 
