@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getPublishedPost } from "@/lib/blog-db";
 import { renderRichContent } from "@/lib/rich-content";
@@ -55,7 +56,26 @@ export default async function ArticlePage({
           <span className="brand-name">Hande Öner</span>
           <span className="brand-title">Psychologist</span>
         </a>
-        <a href="/en/blog">Back to Blog ↗</a>
+
+        <nav className="cms-blog-nav-links" aria-label="Blog navigation">
+          <a href="/en#about">About</a>
+          <a href="/en#areas">Areas of Work</a>
+          <a className="is-active" href="/en/blog">Blog</a>
+          <a href="/en#faq">FAQ</a>
+          <a href="/en#contact">Contact</a>
+        </nav>
+
+        <div className="cms-blog-nav-actions">
+          <div className="cms-blog-language">
+            <a href="/blog" lang="tr">TR</a>
+            <span>/</span>
+            <a className="is-active" href="/en/blog" lang="en">EN</a>
+          </div>
+
+          <a className="cms-blog-nav-cta" href="/en#contact">
+            Request a Session <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </header>
 
       <article className="cms-article section-shell">
@@ -107,8 +127,20 @@ export default async function ArticlePage({
         </aside>
 
         <div className="cms-article-author">
-          <strong>Hande Öner</strong>
-          <span>Psychologist</span>
+          <div className="cms-article-author-photo">
+            <Image
+              src="/images/hande-oner-blog-profile.webp"
+              alt="Hande Öner"
+              fill
+              sizes="52px"
+              className="cms-article-author-image"
+            />
+          </div>
+
+          <div className="cms-article-author-copy">
+            <strong>Hande Öner</strong>
+            <span>PSYCHOLOGIST</span>
+          </div>
         </div>
       </article>
     </main>

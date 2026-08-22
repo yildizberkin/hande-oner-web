@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { listCategories, listPublishedPosts } from "@/lib/blog-db";
 
 export const dynamic = "force-dynamic";
@@ -26,13 +27,49 @@ export default async function BlogPage({
           <span className="brand-name">Hande Öner</span>
           <span className="brand-title">Uzman Psikolog</span>
         </a>
-        <a href="/">Ana Sayfa ↗</a>
+
+        <nav className="cms-blog-nav-links" aria-label="Blog navigasyonu">
+          <a href="/#hakkimda">Hakkımda</a>
+          <a href="/#alanlar">Çalışma Alanlarım</a>
+          <a className="is-active" href="/blog">Blog</a>
+          <a href="/#sss">SSS</a>
+          <a href="/#iletisim">İletişim</a>
+        </nav>
+
+        <div className="cms-blog-nav-actions">
+          <div className="cms-blog-language">
+            <a className="is-active" href="/blog" lang="tr">TR</a>
+            <span>/</span>
+            <a href="/en/blog" lang="en">EN</a>
+          </div>
+
+          <a className="cms-blog-nav-cta" href="/#iletisim">
+            Seans Talebi <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </header>
 
-      <section className="cms-blog-hero section-shell">
-        <span className="section-label">BLOG</span>
-        <h1>Düşünmek, anlamak<br /><span>ve farklı bir yerden bakmak.</span></h1>
-        <p>Psikoloji, ilişkiler ve terapi sürecine dair bilgilendirici yazılar.</p>
+      <section className="cms-blog-hero cms-blog-hero-profiled section-shell">
+        <div className="cms-blog-hero-copy">
+          <span className="section-label">BLOG</span>
+          <h1>Düşünmek, anlamak<br /><span>ve farklı bir yerden bakmak.</span></h1>
+          <p>Psikoloji, ilişkiler ve terapi sürecine dair bilgilendirici yazılar.</p>
+        </div>
+
+        <aside className="cms-blog-profile" aria-label="Hande Öner">
+          <div className="cms-blog-profile-photo">
+            <Image
+              src="/images/hande-oner-blog-profile.webp"
+              alt="Hande Öner"
+              fill
+              sizes="118px"
+              className="cms-blog-profile-image"
+              priority
+            />
+          </div>
+          <strong>Hande Öner</strong>
+          <span>UZMAN PSİKOLOG</span>
+        </aside>
       </section>
 
       <section className="cms-blog-tools section-shell">

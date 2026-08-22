@@ -59,7 +59,6 @@ export default function Home() {
       email: String(formData.get("email") ?? "").trim(),
       phone: String(formData.get("phone") ?? "").trim(),
       sessionType: String(formData.get("sessionType") ?? ""),
-      contactType: String(formData.get("contactType") ?? ""),
       message: String(formData.get("message") ?? "").trim(),
       website: String(formData.get("website") ?? ""),
       turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
@@ -427,10 +426,12 @@ export default function Home() {
             <span />
           </div>
 
-          <h1 className="reveal reveal-2">Hande Öner</h1>
+          <h1 className="reveal reveal-2">
+            Hande Öner <span className="hero-credentials">MSc, GMBPsS</span>
+          </h1>
 
           <p className="hero-name reveal reveal-3">
-            Psychotherapy for Adults
+            Psychotherapist for Adults
           </p>
 
           <p className="hero-description reveal reveal-4">
@@ -495,53 +496,154 @@ export default function Home() {
       {/* ABOUT */}
       <section className="about section-shell" id="about">
         <div className="about-header">
-          <span className="section-index">01</span>
-
           <div className="about-heading">
-            <p className="section-label">ABOUT</p>
-
-            <h2>
-              Education, experience
-              <br />
-              <span>and therapeutic approach.</span>
-            </h2>
+            <h2>About</h2>
           </div>
         </div>
 
-        <div className="about-paragraphs">
-          <article className="about-paragraph-card">
-            <p>
-              Hande Öner completed her undergraduate degree in Psychology at
-              Istanbul Bilgi University. She later completed a master&apos;s
-              degree in Clinical Psychology at Bournemouth University in the
-              United Kingdom. Her master&apos;s thesis explored the impact of
-              childhood sexual abuse on interpersonal relationships in
-              adulthood.
-            </p>
-          </article>
+        <article className="about-glass-card">
+          <p>
+            In my psychotherapy work, I work with adults experiencing anxiety,
+            depression, relationship difficulties, self-esteem concerns,
+            loneliness, anger, grief, and adjustment processes related to
+            migration. I aim to understand these difficulties not only through
+            visible symptoms, but also in relation to a person&apos;s past
+            experiences, recurring relational patterns, and emotional needs.
+          </p>
 
-          <article className="about-paragraph-card">
-            <p>
-              She has worked across different mental health settings in both
-              Türkiye and the United Kingdom, taking part in psychological
-              assessments, client interviews and psychoeducation processes. In
-              the United Kingdom, she worked as a Mental Health Support Worker
-              and later as a Recovery Worker at We Are With You, supporting
-              adults through case management, motivational interviewing, risk
-              assessment and recovery-focused care.
-            </p>
-          </article>
+          <p>
+            My work is primarily informed by a psychodynamic perspective. In
+            line with each client&apos;s needs, I also draw on the knowledge
+            and methods I have gained through schema therapy and
+            cognitive-behavioural approaches. I value a therapy process that
+            develops with trust, openness, and collaboration.
+          </p>
 
-          <article className="about-paragraph-card">
-            <p>
-              Her clinical work is primarily informed by a psychodynamic
-              perspective. She views therapy as a process in which individuals
-              can understand themselves more deeply, make sense of their
-              difficulties and create space for lasting change. She offers
-              face-to-face and online psychotherapy for adults in both Turkish
-              and English.
+          <p>
+            My experience across different mental health settings in Türkiye
+            and the United Kingdom includes psychological assessment, client
+            interviews, psychoeducation, case management, motivational
+            interviewing, and risk assessment. I work with adults in Turkish
+            and English, both face-to-face and online.
+          </p>
+        </article>
+      </section>
+
+
+      {/* EDUCATION, TRAINING & VOLUNTEERING */}
+      <section className="credentials section-shell" id="training">
+        <div className="credentials-bridge" aria-hidden="true">
+          <span className="credentials-bridge-line" />
+          <span className="credentials-bridge-dot" />
+        </div>
+
+        <div className="credentials-header credentials-header-centered">
+          <div className="credentials-heading">
+            <p className="section-label">EDUCATION &amp; PROFESSIONAL DEVELOPMENT</p>
+
+            <h2>
+              Education and
+              <br />
+              <span>professional development.</span>
+            </h2>
+
+            <p className="credentials-intro">
+              My academic education, professional development, and volunteering
+              experience.
             </p>
-          </article>
+          </div>
+        </div>
+
+        <div className="credentials-flow">
+          <section className="credential-glass-panel credential-glass-panel-academic">
+            <div className="credential-panel-heading">
+              <h3>Academic Education</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">MASTER&apos;S DEGREE</span>
+                <strong>Bournemouth University</strong>
+                <p>MSc Clinical Psychology</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">BACHELOR&apos;S DEGREE</span>
+                <strong>Istanbul Bilgi University</strong>
+                <p>BSc Psychology</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="credential-glass-panel">
+            <div className="credential-panel-heading">
+              <h3>Professional Development</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">MEMBERSHIP</span>
+                <strong>British Psychological Society</strong>
+                <p>GMBPsS Graduate Member</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">TRAINING</span>
+                <strong>Istanbul Psychotherapy School</strong>
+                <p>Psychoanalytic Psychotherapy Training – Theoretical Module</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">TRAINING</span>
+                <strong>Dr. Alp Karaosmanoğlu / International Society of Schema Therapy</strong>
+                <p>Schema Therapy Training</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">TRAINING</span>
+                <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
+                <p>Cognitive and Behavioural Therapies Training</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="credential-glass-panel credential-glass-panel-soft">
+            <div className="credential-panel-heading">
+              <h3>Volunteering &amp; Other Work</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">VOLUNTEERING</span>
+                <strong>Samaritans</strong>
+                <p>Volunteer listening support by telephone for people experiencing emotional crisis.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">VOLUNTEERING</span>
+                <strong>World Human Relief</strong>
+                <p>Psychosocial support for people affected by wildfires.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">ACTIVITY</span>
+                <strong>Istanbul University Psychology Club</strong>
+                <p>Seminar on field psychology with earthquake survivors and trauma.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">VOLUNTEERING</span>
+                <strong>BILUM – BILGI Nar Initiative</strong>
+                <p>Social responsibility projects in child protection institutions.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">ACTIVITY</span>
+                <strong>Turkish Psychology Students Working Group</strong>
+                <p>Participation in a psychology students working group.</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -549,9 +651,7 @@ export default function Home() {
       {/* AREAS OF WORK */}
       <section className="areas section-shell" id="areas">
         <div className="areas-header">
-          <span className="section-index">02</span>
-
-          <div className="areas-heading">
+<div className="areas-heading">
             <p className="section-label">AREAS OF WORK</p>
 
             <h2>
@@ -581,9 +681,6 @@ export default function Home() {
                 >
                   <span className="area-card-inner">
                     <span className="area-card-face area-card-front">
-                      <span className="area-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
 
                       <span className="area-card-copy">
                         <strong>{area.title}</strong>
@@ -617,111 +714,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EDUCATION, TRAINING & VOLUNTEERING */}
-      <section className="credentials section-shell" id="training">
-        <div className="credentials-header">
-          <span className="section-index">03</span>
-
-          <div className="credentials-heading">
-            <p className="section-label">TRAINING &amp; OTHER WORK</p>
-
-            <h2>
-              Professional development
-              <br />
-              <span>and volunteering experience.</span>
-            </h2>
-          </div>
-        </div>
-
-        <div className="credentials-compact-grid">
-          <div className="credential-column">
-            <div className="credential-column-heading">
-              <span className="credential-accent" aria-hidden="true" />
-              <h3>Education &amp; Training</h3>
-            </div>
-
-            <article className="credential-mini-card credential-membership">
-              <span className="credential-type">MEMBERSHIP</span>
-              <strong>British Psychological Society</strong>
-              <p>GMBPsS Graduate Member</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">MASTER'S DEGREE</span>
-              <strong>Bournemouth University</strong>
-              <p>MSc Clinical Psychology</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">BACHELOR'S DEGREE</span>
-              <strong>Istanbul Bilgi University</strong>
-              <p>BSc Psychology</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">TRAINING</span>
-              <strong>Istanbul Psychotherapy School</strong>
-              <p>Psychoanalytic Psychotherapy Training – Theoretical Module</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">TRAINING</span>
-              <strong>Dr. Alp Karaosmanoğlu / International Society of Schema Therapy</strong>
-              <p>Schema Therapy Training</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">TRAINING</span>
-              <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
-              <p>Cognitive and Behavioural Therapies Training</p>
-            </article>
-          </div>
-
-          <div className="credential-column">
-            <div className="credential-column-heading">
-              <span className="credential-accent" aria-hidden="true" />
-              <h3>Volunteering &amp; Activities</h3>
-            </div>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">VOLUNTEERING</span>
-              <strong>Samaritans</strong>
-              <p>Volunteer listening support by telephone for people experiencing emotional crisis.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">VOLUNTEERING</span>
-              <strong>World Human Relief</strong>
-              <p>Psychosocial support for people affected by wildfires.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">ACTIVITY</span>
-              <strong>Istanbul University Psychology Club</strong>
-              <p>Seminar on field psychology with earthquake survivors and trauma.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">VOLUNTEERING</span>
-              <strong>BILUM – BILGI Nar Initiative</strong>
-              <p>Social responsibility projects in child protection institutions.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">ACTIVITY</span>
-              <strong>Turkish Psychology Students Working Group</strong>
-              <p>Participation in a psychology students working group.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="faq section-shell" id="faq">
         <div className="faq-header">
-          <span className="section-index">04</span>
-
-          <div className="faq-heading">
+<div className="faq-heading">
             <p className="section-label">FREQUENTLY ASKED QUESTIONS</p>
 
             <h2>
@@ -774,21 +770,75 @@ export default function Home() {
       {/* CONTACT */}
       <section className="contact section-shell" id="contact">
         <div className="contact-header">
-          <span className="section-index">05</span>
           <div className="contact-heading">
             <p className="section-label">CONTACT &amp; SESSION REQUEST</p>
-            <h2>Take the first step<br /><span>and get in touch.</span></h2>
-            <p className="contact-intro">You can use the form below to request a session, ask a question or make an initial enquiry. The email delivery backend will be connected in the next implementation step.</p>
+
+            <h2>
+              Take the first step
+              <br />
+              <span>and get in touch.</span>
+            </h2>
+
+            <div className="intro-consultation-card">
+              <div className="intro-consultation-time" aria-hidden="true">
+                <strong>15</strong>
+                <span>MIN</span>
+              </div>
+
+              <div className="intro-consultation-copy">
+                <span className="intro-consultation-label">FREE INITIAL CONSULTATION</span>
+                <h3>Free 15-Minute Initial Consultation</h3>
+                <p>
+                  Before starting psychotherapy, you can arrange a free
+                  15-minute initial consultation to discuss your questions
+                  about the process and consider whether the way I work feels
+                  suitable for you.
+                </p>
+              </div>
+            </div>
+
+            <p className="contact-intro">
+              You can use the form to request a session, ask a question, or
+              arrange an initial consultation. Please avoid sharing sensitive
+              health information in your first message.
+            </p>
           </div>
         </div>
+
         <div className="contact-grid">
           <aside className="contact-info-card">
-            <div className="contact-info-block"><span className="contact-info-label">Email</span><a href="mailto:pskhandeoner@gmail.com" className="contact-info-value">pskhandeoner@gmail.com</a></div>
-            <div className="contact-info-block"><span className="contact-info-label">Session Format</span><p className="contact-info-value">Face-to-Face &amp; Online</p></div>
-            <div className="contact-info-block"><span className="contact-info-label">Languages</span><p className="contact-info-value">Turkish &amp; English</p></div>
-            <div className="contact-info-block"><span className="contact-info-label">Location</span><p className="contact-info-value">Kadıköy, Istanbul</p></div>
-            <div className="contact-note-card"><span className="contact-note-title">Important Note</span><p>Please keep your first message brief where possible. Avoid sharing sensitive health information or detailed private information through this form.</p></div>
+            <div className="contact-info-block">
+              <span className="contact-info-label">Email</span>
+              <a href="mailto:pskhandeoner@gmail.com" className="contact-info-value">
+                pskhandeoner@gmail.com
+              </a>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Session Format</span>
+              <p className="contact-info-value">Face-to-Face &amp; Online</p>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Languages</span>
+              <p className="contact-info-value">Turkish &amp; English</p>
+            </div>
+
+            <div className="contact-info-block">
+              <span className="contact-info-label">Location</span>
+              <p className="contact-info-value">Kadıköy, Istanbul</p>
+            </div>
+
+            <div className="contact-note-card">
+              <span className="contact-note-title">Important Note</span>
+              <p>
+                Please keep your first message brief where possible. Avoid
+                sharing sensitive health information or detailed private
+                information through this form.
+              </p>
+            </div>
           </aside>
+
           <div className="contact-form-card">
             <form className="contact-form" onSubmit={handleContactSubmit}>
               <div className="contact-form-grid">
@@ -816,18 +866,19 @@ export default function Home() {
                   />
                 </label>
 
-                <label className="form-field">
+                                <label className="form-field">
                   <span>Phone</span>
                   <input
                     type="tel"
                     name="phone"
                     autoComplete="tel"
+                    required
                     maxLength={40}
                     placeholder="Your phone number"
                   />
                 </label>
 
-                <label className="form-field">
+<label className="form-field">
                   <span>Session Preference</span>
                   <select name="sessionType" defaultValue="" required>
                     <option value="" disabled>
@@ -835,18 +886,6 @@ export default function Home() {
                     </option>
                     <option value="online">Online</option>
                     <option value="face-to-face">Face-to-Face</option>
-                    <option value="either">No Preference</option>
-                  </select>
-                </label>
-
-                <label className="form-field">
-                  <span>Preferred Contact Method</span>
-                  <select name="contactType" defaultValue="" required>
-                    <option value="" disabled>
-                      Select
-                    </option>
-                    <option value="email">Email</option>
-                    <option value="phone">Phone</option>
                   </select>
                 </label>
 
@@ -854,6 +893,7 @@ export default function Home() {
                   <span>Short Message</span>
                   <textarea
                     name="message"
+                    required
                     rows={6}
                     maxLength={1500}
                     placeholder="You may briefly share the reason for getting in touch."

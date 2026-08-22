@@ -59,7 +59,6 @@ export default function Home() {
       email: String(formData.get("email") ?? "").trim(),
       phone: String(formData.get("phone") ?? "").trim(),
       sessionType: String(formData.get("sessionType") ?? ""),
-      contactType: String(formData.get("contactType") ?? ""),
       message: String(formData.get("message") ?? "").trim(),
       website: String(formData.get("website") ?? ""),
       turnstileToken: String(formData.get("cf-turnstile-response") ?? ""),
@@ -423,10 +422,12 @@ export default function Home() {
             <span />
           </div>
 
-          <h1 className="reveal reveal-2">Hande Öner</h1>
+          <h1 className="reveal reveal-2">
+            Hande Öner <span className="hero-credentials">MSc, GMBPsS</span>
+          </h1>
 
           <p className="hero-name reveal reveal-3">
-            Yetişkinlere Yönelik Psikoterapi
+            Yetişkinlere Yönelik Psikoterapist
           </p>
 
           <p className="hero-description reveal reveal-4">
@@ -490,54 +491,155 @@ export default function Home() {
       {/* ABOUT */}
       <section className="about section-shell" id="hakkimda">
         <div className="about-header">
-          <span className="section-index">01</span>
-
           <div className="about-heading">
-            <p className="section-label">HAKKIMDA</p>
-
-            <h2>
-              Eğitim, deneyim
-              <br />
-              <span>ve çalışma yaklaşımı.</span>
-            </h2>
+            <h2>Hakkımda</h2>
           </div>
         </div>
 
-        <div className="about-paragraphs">
-          <article className="about-paragraph-card">
-            <p>
-              Hande Öner, lisans eğitimini İstanbul Bilgi Üniversitesi
-              Psikoloji Bölümü’nde tamamlamıştır. Ardından İngiltere’de
-              Bournemouth University’de Klinik Psikoloji yüksek lisansını
-              tamamlayarak uzmanlık eğitimini almıştır. Yüksek lisans tezinde
-              çocukluk çağı cinsel istismarının yetişkinlik dönemindeki
-              kişilerarası ilişkiler üzerindeki etkilerini incelemiştir.
-            </p>
-          </article>
+        <article className="about-glass-card">
+          <p>
+            Psikoterapi çalışmalarımda yetişkinlerle kaygı, depresyon,
+            ilişkisel zorluklar, özsaygı, yalnızlık, öfke, yas ve göçle
+            birlikte ortaya çıkabilen uyum süreçleri üzerine çalışıyorum.
+            Yaşanan güçlükleri yalnızca görünen belirtiler üzerinden değil;
+            kişinin geçmiş deneyimleri, ilişkilerinde tekrar eden örüntüler ve
+            duygusal ihtiyaçlarıyla birlikte anlamaya önem veriyorum.
+          </p>
 
-          <article className="about-paragraph-card">
-            <p>
-              Türkiye ve İngiltere’de farklı ruh sağlığı kurumlarında
-              psikolojik değerlendirme, danışan görüşmeleri ve psikoeğitim
-              süreçlerinde görev almıştır. İngiltere’de ruh sağlığı destek
-              çalışanı, ardından We Are With You bünyesinde iyileşme destek
-              çalışanı olarak çalışmış; yetişkinlerle vaka yönetimi,
-              motivasyonel görüşme, risk değerlendirmesi ve iyileşme odaklı
-              destek süreçlerinde yer almıştır.
-            </p>
-          </article>
+          <p>
+            Çalışmalarımı ağırlıklı olarak psikodinamik bir bakış açısıyla
+            yürütüyor; danışanın ihtiyaçları doğrultusunda şema terapi ve
+            bilişsel-davranışçı yaklaşımlardan edindiğim bilgi ve yöntemlerden
+            de yararlanıyorum. Terapi sürecinin güven, açıklık ve iş birliği
+            içinde ilerlemesini önemsiyorum.
+          </p>
 
-          <article className="about-paragraph-card">
-            <p>
-              Klinik çalışmalarını ağırlıklı olarak psikodinamik bakış
-              açısıyla sürdürmektedir. Terapiyi, bireyin kendisini daha
-              yakından tanıyabileceği, yaşadığı güçlükleri
-              anlamlandırabileceği ve kalıcı değişim için alan açabileceği bir
-              süreç olarak görmektedir. Türkçe ve İngilizce dillerinde
-              yetişkinlere yönelik yüz yüze ve çevrimiçi psikoterapi hizmeti
-              sunmaktadır.
+          <p>
+            Türkiye ve İngiltere’de farklı ruh sağlığı kurumlarında edindiğim
+            deneyimler; psikolojik değerlendirme, danışan görüşmeleri,
+            psikoeğitim, vaka yönetimi, motivasyonel görüşme ve risk
+            değerlendirmesi gibi farklı çalışma alanlarını kapsıyor.
+            Yetişkinlerle Türkçe ve İngilizce, yüz yüze ve çevrimiçi
+            çalışıyorum.
+          </p>
+        </article>
+      </section>
+
+
+      {/* EDUCATION, TRAINING & VOLUNTEERING */}
+      <section className="credentials section-shell" id="egitimler">
+        <div className="credentials-bridge" aria-hidden="true">
+          <span className="credentials-bridge-line" />
+          <span className="credentials-bridge-dot" />
+        </div>
+
+        <div className="credentials-header credentials-header-centered">
+          <div className="credentials-heading">
+            <p className="section-label">EĞİTİM &amp; MESLEKİ GELİŞİM</p>
+
+            <h2>
+              Eğitimim ve
+              <br />
+              <span>mesleki gelişim yolculuğum.</span>
+            </h2>
+
+            <p className="credentials-intro">
+              Akademik eğitimim, mesleki gelişim çalışmalarım ve gönüllülük
+              deneyimlerim.
             </p>
-          </article>
+          </div>
+        </div>
+
+        <div className="credentials-flow">
+          <section className="credential-glass-panel credential-glass-panel-academic">
+            <div className="credential-panel-heading">
+              <h3>Akademik Eğitim</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">YÜKSEK LİSANS</span>
+                <strong>Bournemouth University</strong>
+                <p>Klinik Psikoloji Yüksek Lisansı</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">LİSANS</span>
+                <strong>İstanbul Bilgi Üniversitesi</strong>
+                <p>Psikoloji Lisans Programı</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="credential-glass-panel">
+            <div className="credential-panel-heading">
+              <h3>Mesleki Gelişim</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">ÜYELİK</span>
+                <strong>İngiliz Psikoloji Derneği</strong>
+                <p>Lisansüstü Üye (GMBPsS)</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">EĞİTİM</span>
+                <strong>İstanbul Psikoterapi Okulu</strong>
+                <p>Psikanalitik Psikoterapi Eğitimi – Kuramsal Modül</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">EĞİTİM</span>
+                <strong>Dr. Alp Karaosmanoğlu</strong>
+                <p>Uluslararası Şema Terapi Derneği onaylı Şema Terapi Eğitimi</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">EĞİTİM</span>
+                <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
+                <p>Bilişsel ve Davranışçı Terapiler Eğitimi</p>
+              </article>
+            </div>
+          </section>
+
+          <section className="credential-glass-panel credential-glass-panel-soft">
+            <div className="credential-panel-heading">
+              <h3>Gönüllülük &amp; Diğer Çalışmalar</h3>
+            </div>
+
+            <div className="credential-flow-list">
+              <article className="credential-flow-item">
+                <span className="credential-type">GÖNÜLLÜLÜK</span>
+                <strong>Samaritans</strong>
+                <p>Duygusal kriz yaşayan bireylere telefonla gönüllü dinleme desteği.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">GÖNÜLLÜLÜK</span>
+                <strong>World Human Relief</strong>
+                <p>Orman yangınlarından etkilenen bireylere psikososyal destek.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">AKTİVİTE</span>
+                <strong>İstanbul Üniversitesi Psikoloji Kulübü</strong>
+                <p>Deprem mağdurları ve travma alanında saha psikologluğu semineri.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">GÖNÜLLÜLÜK</span>
+                <strong>BİLUM – BİLGİ Nar Harekatı</strong>
+                <p>Çocuk esirgeme kurumlarında sosyal sorumluluk projeleri.</p>
+              </article>
+
+              <article className="credential-flow-item">
+                <span className="credential-type">AKTİVİTE</span>
+                <strong>Türkiye Psikoloji Öğrencileri Çalışma Grubu</strong>
+                <p>Psikoloji öğrencileri çalışma grubu katılımı.</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -545,9 +647,7 @@ export default function Home() {
       {/* AREAS OF WORK */}
       <section className="areas section-shell" id="alanlar">
         <div className="areas-header">
-          <span className="section-index">02</span>
-
-          <div className="areas-heading">
+<div className="areas-heading">
             <p className="section-label">ÇALIŞMA ALANLARIM</p>
 
             <h2>
@@ -578,9 +678,6 @@ export default function Home() {
                 >
                   <span className="area-card-inner">
                     <span className="area-card-face area-card-front">
-                      <span className="area-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
 
                       <span className="area-card-copy">
                         <strong>{area.title}</strong>
@@ -614,111 +711,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EDUCATION, TRAINING & VOLUNTEERING */}
-      <section className="credentials section-shell" id="egitimler">
-        <div className="credentials-header">
-          <span className="section-index">03</span>
-
-          <div className="credentials-heading">
-            <p className="section-label">EĞİTİMLER &amp; DİĞER ÇALIŞMALAR</p>
-
-            <h2>
-              Mesleki gelişim
-              <br />
-              <span>ve gönüllülük deneyimleri.</span>
-            </h2>
-          </div>
-        </div>
-
-        <div className="credentials-compact-grid">
-          <div className="credential-column">
-            <div className="credential-column-heading">
-              <span className="credential-accent" aria-hidden="true" />
-              <h3>Eğitimler &amp; Sertifikalar</h3>
-            </div>
-
-            <article className="credential-mini-card credential-membership">
-              <span className="credential-type">ÜYELİK</span>
-              <strong>British Psychological Society</strong>
-              <p>GMBPsS Graduate Member</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">YÜKSEK LİSANS</span>
-              <strong>Bournemouth University</strong>
-              <p>Klinik Psikoloji Yüksek Lisansı (MSc Clinical Psychology)</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">LİSANS</span>
-              <strong>İstanbul Bilgi Üniversitesi</strong>
-              <p>Psikoloji Lisans Programı</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">EĞİTİM</span>
-              <strong>İstanbul Psikoterapi Okulu</strong>
-              <p>Psikanalitik Psikoterapi Eğitimi – Kuramsal Modül</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">EĞİTİM</span>
-              <strong>Dr. Alp Karaosmanoğlu / International Society of Schema Therapy</strong>
-              <p>Şema Terapi Eğitimi</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">EĞİTİM</span>
-              <strong>Prof. Dr. Ebru Şalcıoğlu</strong>
-              <p>Bilişsel ve Davranışçı Terapiler Eğitimi</p>
-            </article>
-          </div>
-
-          <div className="credential-column">
-            <div className="credential-column-heading">
-              <span className="credential-accent" aria-hidden="true" />
-              <h3>Gönüllülük &amp; Aktiviteler</h3>
-            </div>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">GÖNÜLLÜLÜK</span>
-              <strong>Samaritans</strong>
-              <p>Duygusal kriz yaşayan bireylere telefonla gönüllü dinleme desteği.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">GÖNÜLLÜLÜK</span>
-              <strong>World Human Relief</strong>
-              <p>Orman yangınlarından etkilenen bireylere psikososyal destek.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">AKTİVİTE</span>
-              <strong>İstanbul Üniversitesi Psikoloji Kulübü</strong>
-              <p>Deprem mağdurları ve travma alanında saha psikologluğu semineri.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">GÖNÜLLÜLÜK</span>
-              <strong>BİLUM – BİLGİ Nar Harekatı</strong>
-              <p>Çocuk esirgeme kurumlarında sosyal sorumluluk projeleri.</p>
-            </article>
-
-            <article className="credential-mini-card">
-              <span className="credential-type">AKTİVİTE</span>
-              <strong>Türkiye Psikoloji Öğrencileri Çalışma Grubu</strong>
-              <p>Psikoloji öğrencileri çalışma grubu katılımı.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="faq section-shell" id="sss">
         <div className="faq-header">
-          <span className="section-index">04</span>
-
-          <div className="faq-heading">
+<div className="faq-heading">
             <p className="section-label">SIK SORULAN SORULAR</p>
 
             <h2>
@@ -774,8 +770,6 @@ export default function Home() {
       {/* CONTACT */}
       <section className="contact section-shell" id="iletisim">
         <div className="contact-header">
-          <span className="section-index">05</span>
-
           <div className="contact-heading">
             <p className="section-label">İLETİŞİM &amp; SEANS TALEBİ</p>
 
@@ -785,8 +779,26 @@ export default function Home() {
               <span>benimle iletişime geçin.</span>
             </h2>
 
+            <div className="intro-consultation-card">
+              <div className="intro-consultation-time" aria-hidden="true">
+                <strong>15</strong>
+                <span>DK</span>
+              </div>
+
+              <div className="intro-consultation-copy">
+                <span className="intro-consultation-label">ÜCRETSİZ ÖN GÖRÜŞME</span>
+                <h3>15 Dakikalık Ücretsiz Ön Görüşme</h3>
+                <p>
+                  Psikoterapiye başlamadan önce sürece ilişkin sorularınızı
+                  konuşmak ve çalışma biçiminin sizin için uygun olup olmadığını
+                  değerlendirmek için 15 dakikalık ücretsiz bir ön görüşme
+                  planlayabilirsiniz.
+                </p>
+              </div>
+            </div>
+
             <p className="contact-intro">
-              Seans talebi, soru veya ön görüşme isteğiniz için aşağıdaki formu
+              Seans talebi, soru veya ön görüşme isteğiniz için formu
               kullanabilirsiniz. İlk mesajınızda hassas sağlık bilgileri
               paylaşmamanız önerilir.
             </p>
@@ -837,6 +849,7 @@ export default function Home() {
                     name="name"
                     autoComplete="name"
                     required
+                    maxLength={120}
                     placeholder="Adınızı ve soyadınızı yazın"
                   />
                 </label>
@@ -848,21 +861,24 @@ export default function Home() {
                     name="email"
                     autoComplete="email"
                     required
+                    maxLength={254}
                     placeholder="ornek@mail.com"
                   />
                 </label>
 
-                <label className="form-field">
+                                <label className="form-field">
                   <span>Telefon</span>
                   <input
                     type="tel"
                     name="phone"
                     autoComplete="tel"
+                    required
+                    maxLength={40}
                     placeholder="05xx xxx xx xx"
                   />
                 </label>
 
-                <label className="form-field">
+<label className="form-field">
                   <span>Görüşme Tercihi</span>
                   <select name="sessionType" defaultValue="" required>
                     <option value="" disabled>
@@ -870,18 +886,6 @@ export default function Home() {
                     </option>
                     <option value="online">Çevrimiçi</option>
                     <option value="face-to-face">Yüz Yüze</option>
-                    <option value="either">Fark Etmez</option>
-                  </select>
-                </label>
-
-                <label className="form-field">
-                  <span>İletişim Tercihi</span>
-                  <select name="contactType" defaultValue="" required>
-                    <option value="" disabled>
-                      Seçiniz
-                    </option>
-                    <option value="email">E-posta</option>
-                    <option value="phone">Telefon</option>
                   </select>
                 </label>
 
@@ -889,6 +893,7 @@ export default function Home() {
                   <span>Kısa Mesaj</span>
                   <textarea
                     name="message"
+                    required
                     rows={6}
                     maxLength={1500}
                     placeholder="Kısaca ulaşma nedeninizi paylaşabilirsiniz."

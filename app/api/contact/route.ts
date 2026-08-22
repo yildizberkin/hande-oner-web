@@ -5,7 +5,6 @@ type ContactPayload = {
   email?: string;
   phone?: string;
   sessionType?: string;
-  contactType?: string;
   message?: string;
   website?: string;
   turnstileToken?: string;
@@ -13,8 +12,7 @@ type ContactPayload = {
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const ALLOWED_SESSION_TYPES = new Set(["online", "face-to-face", "either"]);
-const ALLOWED_CONTACT_TYPES = new Set(["email", "phone"]);
+const ALLOWED_SESSION_TYPES = new Set(["online", "face-to-face"]);
 
 function clean(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -74,15 +72,15 @@ export async function POST(request: Request) {
     const email = clean(payload.email, 254).toLowerCase();
     const phone = clean(payload.phone, 40);
     const sessionType = clean(payload.sessionType, 30);
-    const contactType = clean(payload.contactType, 20);
     const message = clean(payload.message, 1500);
     const language = payload.language === "en" ? "en" : "tr";
 
     if (
       name.length < 2 ||
       !EMAIL_RE.test(email) ||
+      phone.length < 7 ||
       !ALLOWED_SESSION_TYPES.has(sessionType) ||
-      !ALLOWED_CONTACT_TYPES.has(contactType)
+      message.length < 2
     ) {
       return NextResponse.json(
         {
@@ -137,22 +135,15 @@ export async function POST(request: Request) {
     const sessionLabels: Record<string, string> = {
       online: "Online",
       "face-to-face": language === "tr" ? "Yüz Yüze" : "Face-to-Face",
-      either: language === "tr" ? "Fark Etmez" : "No Preference",
-    };
-
-    const contactLabels: Record<string, string> = {
-      email: "Email",
-      phone: language === "tr" ? "Telefon" : "Phone",
     };
 
     const html = `
       <div style="font-family:Arial,sans-serif;line-height:1.6;color:#43302e">
-        <h2>Yeni seans / iletişim talebi</h2>
+        <h2>Yeni seans / ön görüşme talebi</h2>
         <p><strong>Ad Soyad:</strong> ${escapeHtml(name)}</p>
         <p><strong>E-posta:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Telefon:</strong> ${escapeHtml(phone || "-")}</p>
+        <p><strong>Telefon:</strong> ${escapeHtml(phone)}</p>
         <p><strong>Görüşme tercihi:</strong> ${escapeHtml(sessionLabels[sessionType] ?? sessionType)}</p>
-        <p><strong>İletişim tercihi:</strong> ${escapeHtml(contactLabels[contactType] ?? contactType)}</p>
         <p><strong>Site dili:</strong> ${language.toUpperCase()}</p>
         <p><strong>Mesaj:</strong></p>
         <p>${escapeHtml(message || "-").replace(/\n/g, "<br />")}</p>
@@ -169,7 +160,7 @@ export async function POST(request: Request) {
         from: fromEmail,
         to: [toEmail],
         reply_to: email,
-        subject: `Yeni seans talebi — ${name}`,
+        subject: `Yeni seans / ön görüşme talebi — ${name}`,
         html,
       }),
     });
