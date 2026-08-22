@@ -434,9 +434,11 @@ export default function Home() {
           </p>
 
           <p className="hero-description reveal reveal-4">
-            Face-to-face and online psychotherapy.
-            <br />
-            Turkish and English sessions available.
+            I guide you through a psychotherapy process in which you can make
+            deeper sense of yourself, your experiences, and recurring patterns
+            in your relationships. I value understanding each client&apos;s
+            experience within its own context and shaping the process
+            accordingly.
           </p>
 
           <div className="hero-actions reveal reveal-5">

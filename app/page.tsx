@@ -430,9 +430,10 @@ export default function Home() {
           </p>
 
           <p className="hero-description reveal reveal-4">
-            Yüz yüze ve çevrimiçi psikoterapi.
-            <br />
-            Türkçe ve İngilizce görüşme seçeneği.
+            Kendinizi, yaşadıklarınızı ve ilişkilerinizde tekrar eden örüntüleri
+            daha yakından anlamlandırabileceğiniz psikoterapi sürecinde rehberlik
+            ediyorum. Her danışanın deneyimini kendi bağlamı içinde anlamaya ve
+            süreci buna göre şekillendirmeye önem veriyorum.
           </p>
 
           <div className="hero-actions reveal reveal-5">
