@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { listCategories, listPublishedPosts } from "@/lib/blog-db";
+import BlogNavbar from "@/app/components/BlogNavbar";
 
 export const dynamic = "force-dynamic";
 
@@ -22,32 +23,7 @@ export default async function BlogPage({
 
   return (
     <main className="cms-blog-page">
-      <header className="cms-blog-navbar section-shell">
-        <a className="brand" href="/">
-          <span className="brand-name">Hande Öner</span>
-          <span className="brand-title">Uzman Psikolog</span>
-        </a>
-
-        <nav className="cms-blog-nav-links" aria-label="Blog navigasyonu">
-          <a href="/#hakkimda">Hakkımda</a>
-          <a href="/#alanlar">Çalışma Alanlarım</a>
-          <a className="is-active" href="/blog">Blog</a>
-          <a href="/#sss">SSS</a>
-          <a href="/#iletisim">İletişim</a>
-        </nav>
-
-        <div className="cms-blog-nav-actions">
-          <div className="cms-blog-language">
-            <a className="is-active" href="/blog" lang="tr">TR</a>
-            <span>/</span>
-            <a href="/en/blog" lang="en">EN</a>
-          </div>
-
-          <a className="cms-blog-nav-cta" href="/#iletisim">
-            Seans Talebi <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </header>
+      <BlogNavbar language="tr" />
 
       <section className="cms-blog-hero cms-blog-hero-profiled section-shell">
         <div className="cms-blog-hero-copy">

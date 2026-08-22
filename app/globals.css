@@ -6950,3 +6950,40 @@ main {
     letter-spacing: -0.03em;
   }
 }
+
+
+/* TASK 09 — BLOG MOBILE NAVBAR PARITY */
+
+.cms-blog-mobile-toggle {
+  display: none;
+  justify-self: end;
+}
+
+@media (max-width: 900px) {
+  .cms-blog-navbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .cms-blog-navbar .cms-blog-nav-links,
+  .cms-blog-navbar .cms-blog-nav-actions {
+    display: none;
+  }
+
+  .cms-blog-mobile-toggle {
+    display: flex;
+  }
+
+  .cms-blog-mobile-overlay {
+    display: block;
+  }
+
+  .cms-blog-mobile-overlay .mobile-menu-panel {
+    top: 92px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cms-blog-mobile-overlay .mobile-menu-panel {
+    top: 82px;
+  }
+}
