@@ -6987,3 +6987,72 @@ main {
     top: 82px;
   }
 }
+
+
+/* TASK 11 — WORK AREA DETAIL POLISH */
+
+/* Match the final editorial typography used across the public site. */
+.work-area-heading h1,
+.work-area-content-card h2,
+.work-area-cta h2 {
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-weight: 400;
+}
+
+.work-area-heading h1 {
+  letter-spacing: -0.045em;
+}
+
+.work-area-content-card h2,
+.work-area-cta h2 {
+  letter-spacing: -0.025em;
+}
+
+/* Numbers were removed from the detail cards; reclaim their empty column. */
+.work-area-content-card {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border-color: rgba(193, 219, 232, 0.62);
+}
+
+.work-area-content-card h2 {
+  font-size: clamp(27px, 2.7vw, 38px);
+}
+
+.work-area-content-card p {
+  margin-top: 16px;
+}
+
+/* Use the same full public navbar language as blog/main site. */
+.work-area-navbar {
+  margin-bottom: 0;
+}
+
+.work-area-article {
+  padding-top: 46px;
+}
+
+@media (max-width: 900px) {
+  .work-area-navbar .cms-blog-nav-links,
+  .work-area-navbar .cms-blog-nav-actions {
+    display: none;
+  }
+
+  .work-area-navbar .cms-blog-mobile-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .work-area-article {
+    padding-top: 28px;
+  }
+
+  .work-area-heading h1 {
+    letter-spacing: -0.035em;
+  }
+
+  .work-area-content-card h2 {
+    font-size: clamp(25px, 8vw, 34px);
+  }
+}

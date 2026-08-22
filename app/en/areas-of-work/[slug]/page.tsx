@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getSiteUrl } from "@/lib/site";
 import { getEnglishWorkArea, workAreas } from "@/lib/work-areas";
+import WorkAreaNavbar from "@/app/components/WorkAreaNavbar";
 
 export function generateStaticParams() {
   return workAreas.map((area) => ({ slug: area.enSlug }));
@@ -57,16 +58,7 @@ export default async function WorkAreaPage({
 
   return (
     <main className="work-area-page" lang="en">
-      <header className="detail-navbar section-shell">
-        <a className="brand" href="/en" aria-label="Hande Öner home">
-          <span className="brand-name">Hande Öner</span>
-          <span className="brand-title">Psychologist</span>
-        </a>
-
-        <a className="detail-back-link" href="/en#areas">
-          Back to areas of work <span aria-hidden="true">↗</span>
-        </a>
-      </header>
+      <WorkAreaNavbar language="en" />
 
       <article className="work-area-article section-shell">
         <div className="work-area-breadcrumb" aria-label="Breadcrumb">
@@ -89,9 +81,6 @@ export default async function WorkAreaPage({
         <div className="work-area-content">
           {area.enSections.map((section, index) => (
             <section className="work-area-content-card" key={section.heading}>
-              <span className="work-area-section-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <div>
                 <h2>{section.heading}</h2>
                 <p>{section.body}</p>
